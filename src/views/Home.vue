@@ -52,7 +52,7 @@ export default {
     }
   },
   mounted() {
-    alert(location.href);
+    // alert(location.href);
     if(sessionStorage.active){
       this.active=Number(sessionStorage.active);
     }else{
@@ -61,7 +61,7 @@ export default {
     if(location.href.includes('token')){
       sessionStorage.token=this.$route.query.token;
     }else{
-      var en = encodeURI('http://love.anheqiaobei.com/#/home')
+      var en = escape('http://love.anheqiaobei.com/#/home');
       location.href='http://api.love.anheqiaobei.com/api/wechat/auth?target_url='+en;
     }
   }
