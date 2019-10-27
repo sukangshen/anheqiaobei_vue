@@ -68,10 +68,11 @@ export default {
     }else{
       this.active=0;
     }
-    if(localStorage.token){
+
+    if(sessionStorage.token){
       // 如果存在什么也不做，直接用token就行
     }else if(location.href.includes('token')){
-      localStorage.token=this.$route.query.token;
+      sessionStorage.token=this.$route.query.token;
     }else{
       var en = escape('http://love.anheqiaobei.com/#/home');
       location.href='http://api.love.anheqiaobei.com/api/wechat/auth?target_url='+en;

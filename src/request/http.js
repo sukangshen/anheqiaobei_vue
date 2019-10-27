@@ -8,7 +8,7 @@ const service = axios.create({
 // request interceptor
 service.interceptors.request.use(
   config => {
-    config.headers={'Accept':'application/json','Authorization':'Bearer'+localStorage.token}
+    config.headers={'Accept':'application/json','Authorization':'Bearer'+sessionStorage.token}
     // config.headers['X-Token'] = '';
     return config
   },

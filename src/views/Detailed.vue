@@ -64,7 +64,7 @@ export default {
     }
   },
   mounted() {
-    detail(1).then(res=>{
+    detail(this.$route.query.id).then(res=>{
       console.log(res.data);
       this.data=res.data;
       this.images=res.data.self_img;
