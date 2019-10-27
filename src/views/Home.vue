@@ -63,9 +63,6 @@ export default {
     }else{
       location.href='http://api.love.anheqiaobei.com/api/wechat/auth?target_url=http://love.anheqiaobei.com/#/home';
     }
-    // fetchList({'target_url':'https://www.baidu.com/'}).then(res=>{
-    //   console.log(res)
-    // })
   }
 };
 </script>
