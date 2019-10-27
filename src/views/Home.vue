@@ -60,7 +60,7 @@ export default {
       this.active=0;
     }
     if(location.href.includes('token')){
-      sessionStorage.token=this.$route.query.token;
+      localStorage.token=this.$route.query.token;
     }else{
       var en = escape('http://love.anheqiaobei.com/#/home');
       location.href='http://api.love.anheqiaobei.com/api/wechat/auth?target_url='+en;
