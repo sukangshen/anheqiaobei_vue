@@ -24,7 +24,7 @@ export default {
       active: "",
       tabbars: [
         {
-          name: "/home",
+          name: "/about",
           title: "发现",
           normal: require("@/static/img/home.png"),
           active: require("@/static/img/home_active.png"),
@@ -44,6 +44,17 @@ export default {
       ]
     };
   },
+  watch:{
+    $route(to,from){
+      if(to.path=='/about'){
+        this.active=0;
+      }else if(to.path=='/release'){
+        this.active=1;
+      }else{
+        this.active=2;
+      }
+    }
+  },
   methods: {
     tab(i,path){
       this.active=i;
@@ -58,7 +69,7 @@ export default {
       this.active=0;
     }
     if(localStorage.token){
-      return;
+      // 如果存在什么也不做，直接用token就行
     }else if(location.href.includes('token')){
       localStorage.token=this.$route.query.token;
     }else{

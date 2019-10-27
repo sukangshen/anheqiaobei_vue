@@ -7,7 +7,8 @@
       <ul>
         <li v-for="(item,i) in list" :key="i" @click="goDetail(item.profile_id)">
           <img :src="item['self_img']?item['self_img'][0]:'http://img4.imgtn.bdimg.com/it/u=1212738062,1791075344&fm=26&gp=0.jpg'" alt="">
-          <div><span style="float:left">善良的毛豆</span> <span style="float:right">{{item.age}}岁 | {{item.address_live_name.split('-')[0]}}</span></div>
+          <div><img :src="item.headimgurl" alt=""><span style="float:left">善良的</span>
+          <span style="float:right">{{item.age}}岁/{{item.address_live_name.split('-')[0]}}</span></div>
         </li>
       </ul>
     </div>
@@ -73,7 +74,7 @@ export default {
     margin-bottom: 1rem;
   }
   .cont ul>li{
-    width: 2.93rem;
+    width: 2.94rem;
     height: 4.3rem;
     overflow: hidden;
   }
@@ -85,12 +86,26 @@ export default {
   }
   .cont ul>li>div{
     width: 100%;
-    height: 0.3rem;
-    line-height: 0.3rem;
-    font-size: 0.2rem;
+    height: 0.5rem;
+    line-height: 0.5rem;
+    font-size: 0.22rem;
     box-sizing: border-box;
-    margin: 0.1rem 0;
-    padding: 0 0.1rem;
+    padding: 0 0.05rem;
   }
-
+  .cont ul>li>div>span:nth-of-type(1){
+    display: inline-block;
+    overflow: hidden;
+    text-overflow:ellipsis;
+    white-space: nowrap;
+    max-width: 1rem;
+  }
+.cont ul>li>div>img{
+  width: 0.36rem;
+  height: 0.36rem;
+  float: left;
+  border-radius: 50%;
+  margin-right: 0.07rem;
+  vertical-align: top;
+  margin-top: 0.05rem;
+}
 </style>

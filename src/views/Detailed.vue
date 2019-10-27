@@ -2,15 +2,15 @@
   <div class="release">
     <div class="head"  @click="goPreview">
       <van-swipe :autoplay="3000" indicator-color="#333">
-        <van-swipe-item>
-          <img src="@/static/img/nv1.jpg" alt class="imgClass" />
+        <van-swipe-item v-for="(item,i) in data.self_img" :key="i">
+          <img :src="item" alt class="imgClass" />
         </van-swipe-item>
-        <van-swipe-item>
+        <!-- <van-swipe-item>
           <img src="@/static/img/nv2.jpg" alt class="imgClass" />
         </van-swipe-item>
         <van-swipe-item>
           <img src="@/static/img/nv3.jpg" alt class="imgClass" />
-        </van-swipe-item>
+        </van-swipe-item> -->
       </van-swipe>
     </div>
 <van-image-preview
@@ -20,26 +20,21 @@
   <template v-slot:index>{{index+1}}/{{images.length}}</template>
 </van-image-preview>
 <div class="brief">
-  <p><img src="https://img.yzcdn.cn/2.jpg" alt="">爱上猴神大叔</p>
+  <p><img :src="data.headimgurl" alt="">爱上猴神大叔</p>
   <div>
-    <p>99年 | 167cm | 45kg</p>
-    <p>河北石家庄 | 现居北京</p>
+    <p>{{data.birth}} | {{data.height}}cm | {{data.weight}}kg</p>
+    <p>{{data.address_birth_name.split('-')[0]}}{{data.address_birth_name.split('-')[1]}} | 现居{{data.address_live_name.split('-')[0]}}{{data.address_live_name.split('-')[1]}}</p>
   </div>
   </div>  
     <div class="easy">
       <span>个人介绍：</span>
       <div>
-        不知不觉，你已经离开我，不知不觉，我跟了这节奏
-        不知不觉，你已经离开我，不知不觉，我跟了这节奏
-        不知不觉，你已经离开我，不知不觉，我跟了这节奏
+        {{data.self_intro}}
       </div>
     </div>
     <div class="easy">
       <span>择偶标准：</span>
-      <div>
-        不知不觉，你已经离开我，不知不觉，我跟了这节奏
-        不知不觉，你已经离开我，不知不觉，我跟了这节奏
-        不知不觉，你已经离开我，不知不觉，我跟了这节奏
+      <div>{{data.friend_condition}}
       </div>
     </div>
   </div>
@@ -56,7 +51,8 @@ export default {
       images: [
         'https://img.yzcdn.cn/2.jpg',
         'https://img.yzcdn.cn/2.jpg'
-      ]
+      ],
+      data:{}
     };
   },
   methods: {
@@ -68,9 +64,10 @@ export default {
     }
   },
   mounted() {
-    alert(localStorage.token)
     detail(1).then(res=>{
-      console.log(res);
+      console.log(res.data);
+      this.data=res.data;
+      this.images=res.data.self_img;
     })
   }
 };
@@ -80,6 +77,7 @@ export default {
   width: 100%;
   height: 6rem;
   position: relative;
+  border-bottom: 1px solid #efefef;
   .imgClass {
     width: 100%;
     height: 6rem;
@@ -104,6 +102,7 @@ export default {
   padding-left:0.1rem; 
   margin-left: 0.25rem;
   margin-bottom: 0.05rem;
+  font-weight: 550;
 }
 .easy > div {
   width: 100%;
@@ -114,7 +113,7 @@ export default {
   color: #666;
 }
 .brief{
-  height: 1.5rem;
+  height: 1.6rem;
   border-bottom: 1px solid #eee;
   box-sizing: border-box;
   padding: 0 0.25rem;
@@ -124,10 +123,9 @@ export default {
     height: 0.6rem;
     line-height: 0.6rem;
     img{
-      width: 0.5rem;
-      height: 0.5rem;
+      width: 0.6rem;
+      height: 0.6rem;
       vertical-align: top;
-      margin-top: 0.05rem;
       border-radius: 50%;
       margin-right: 0.1rem;
     }

@@ -14,4 +14,11 @@ new Vue({
   store,
   render: h => h(App)
 }).$mount('#app')
-console.log(moment().subtract(10, "days").format("YYYY-MM-DD"))
+// console.log(moment().subtract(10, "days").format("YYYY-MM-DD"))
+
+
+ 
+// router.beforeEach((to, from, next) => {
+//   console.log(to);
+//   console.log(from)
+// })
