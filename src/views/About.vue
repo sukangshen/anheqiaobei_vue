@@ -44,7 +44,7 @@ export default {
     if(location.href.includes('token')){
 
     }else{
-      // location.href='http://api.love.anheqiaobei.com/api/wechat/auth?target_url=https://www.baidu.com/';
+      location.href='http://api.love.anheqiaobei.com/api/wechat/auth?target_url=http://love.anheqiaobei.com/';
     }
     getList({limit:'20'}).then(res=>{
       this.list=res.data.data;
