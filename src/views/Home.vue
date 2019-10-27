@@ -47,15 +47,21 @@ export default {
   methods: {
     tab(i,path){
       this.active=i;
-      localStorage.active=i;
+      sessionStorage.active=i;
       this.$router.push(path);
     }
   },
   mounted() {
-    if(localStorage.active){
-      this.active=Number(localStorage.active);
+    alert(location.href);
+    if(sessionStorage.active){
+      this.active=Number(sessionStorage.active);
     }else{
       this.active=0;
+    }
+    if(location.href.includes('token')){
+      sessionStorage.token=this.$route.query.token;
+    }else{
+      location.href='http://api.love.anheqiaobei.com/api/wechat/auth?target_url=http://love.anheqiaobei.com/';
     }
     // fetchList({'target_url':'https://www.baidu.com/'}).then(res=>{
     //   console.log(res)
