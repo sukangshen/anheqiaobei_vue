@@ -17,10 +17,13 @@ input,button,textarea{
   outline: none;
   border: 0;
 }
-body{
+html,body{
   width: 100%;
   height: 100%;
   background: #fff;
+  -webkit-overflow-scrolling: touch;
+	overflow-scrolling: touch;
+	overflow-y: scroll;
 }
 .van-toast__text{
   color: #fff

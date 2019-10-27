@@ -63,7 +63,7 @@ export default {
       localStorage.token=this.$route.query.token;
     }else{
       var en = escape('http://love.anheqiaobei.com/#/home');
-      location.href='http://api.love.anheqiaobei.com/api/wechat/auth?target_url='+en;
+      // location.href='http://api.love.anheqiaobei.com/api/wechat/auth?target_url='+en;
     }
   }
 };

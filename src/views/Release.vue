@@ -229,19 +229,47 @@ export default {
       // }
     },
     submit() {
-      if(this.imgList1.length<1||this.imgList2.length<1||this.gender==''||this.userName==''||this.height==''||this.weight==''||this.dateVal==''||this.address_live==''||this.address_birth==''||this.self_intro==''||this.friend_condition==''){
-        Toast('请将您的信息填写完整');
+      if(this.userName==''){
+        Toast('请填写您的姓名');
+        return;
+      }
+      if(this.gender==''){
+        Toast('请选择您的性别');
+        return;
+      }
+      if(this.height==''){
+        Toast('请填写您的身高');
+        return;
+      }
+      if(this.weight==''){
+        Toast('请填写您的体重');
+        return;
+      }
+      if(this.dateVal==''){
+        Toast('请选择您的出生日期');
+        return;
+      }
+      if(this.address_live_name==''){
+        Toast('请选择您的家乡地址');
+        return;
+      }
+      if(this.address_birth_name==''){
+        Toast('请选择您的当前所在地');
+        return;
+      }
+      if(this.self_intro==''){
+        Toast('介绍下自己，让对方初步了解您');
+        return;
+      }
+      if(this.friend_condition==''){
+        Toast('对另一半的要求是什么呢');
         return;
       }
       Dialog.confirm({
         title: '提示',
         message: '确定要发布吗？'
       }).then(() => {
-        // on confirm
-      }).catch(() => {
-        // on cancel
-      });
-      release({
+              release({
         self_img: this.imgList1,
         wechat_img: this.imgList2,
         gender: this.gender,
@@ -259,6 +287,11 @@ export default {
           Toast("发布成功");
         }
       });
+        // on confirm
+      }).catch(() => {
+        // on cancel
+      });
+
     },
     addressConfirm(e) {
       console.log(e);
