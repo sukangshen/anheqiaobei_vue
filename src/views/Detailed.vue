@@ -20,7 +20,7 @@
   <template v-slot:index>{{index+1}}/{{images.length}}</template>
 </van-image-preview>
 <div class="brief">
-  <p><img :src="data.headimgurl" alt="">爱上猴神大叔</p>
+  <p><img :src="data.headimgurl" alt="">{{data.nickname}}</p>
   <div>
     <p>{{data.birth}} | {{data.height}}cm | {{data.weight}}kg</p>
     <p>{{data.address_birth_name.split('-')[0]}}{{data.address_birth_name.split('-')[1]}} | 现居{{data.address_live_name.split('-')[0]}}{{data.address_live_name.split('-')[1]}}</p>
