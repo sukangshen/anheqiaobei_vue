@@ -22,8 +22,7 @@ html,body{
   height: 100%;
   background: #fff;
   -webkit-overflow-scrolling: touch;
-	overflow-scrolling: touch;
-	overflow-y: scroll;
+	overflow: auto;
 }
 .van-toast__text{
   color: #fff

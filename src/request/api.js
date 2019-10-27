@@ -37,3 +37,9 @@ export function my(data) {
     data
   })
 }
+export function detail(data) {
+  return request({
+    url: '/api/wechat/profileDetail?profile_id='+data,
+    method: 'get',
+  })
+}

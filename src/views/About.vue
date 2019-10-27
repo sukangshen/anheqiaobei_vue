@@ -5,9 +5,9 @@
     </div>
     <div class="cont">
       <ul>
-        <li v-for="(item,i) in list" :key="i" @click="goDetail">
+        <li v-for="(item,i) in list" :key="i" @click="goDetail(item.profile_id)">
           <img :src="item['self_img']?item['self_img'][0]:'http://img4.imgtn.bdimg.com/it/u=1212738062,1791075344&fm=26&gp=0.jpg'" alt="">
-          <div><span style="float:left">善良的毛豆</span> <span style="float:right">{{item.age}}岁 | {{item.address_live.split('-')[0]}}</span></div>
+          <div><span style="float:left">善良的毛豆</span> <span style="float:right">{{item.age}}岁 | {{item.address_live_name.split('-')[0]}}</span></div>
         </li>
       </ul>
     </div>
@@ -33,8 +33,8 @@ export default {
     }
   },
   methods:{
-    goDetail(){
-      this.$router.push('/detailed');
+    goDetail(id){
+      this.$router.push({path:'/detailed',query:{id:id}});
     },
     tab(i){
       this.active=i;

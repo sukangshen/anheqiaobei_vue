@@ -46,6 +46,7 @@
 </template>
 
 <script>
+import { detail} from "@/request/api.js";
 export default {
   name: "detailed",
   data() {
@@ -67,6 +68,10 @@ export default {
     }
   },
   mounted() {
+    alert(localStorage.token)
+    detail(1).then(res=>{
+      console.log(res);
+    })
   }
 };
 </script>
