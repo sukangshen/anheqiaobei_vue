@@ -61,7 +61,7 @@ export default {
     if(location.href.includes('token')){
       sessionStorage.token=this.$route.query.token;
     }else{
-      location.href='http://api.love.anheqiaobei.com/api/wechat/auth?target_url=http://love.anheqiaobei.com/';
+      location.href='http://api.love.anheqiaobei.com/api/wechat/auth?target_url=http://love.anheqiaobei.com/#/home';
     }
     // fetchList({'target_url':'https://www.baidu.com/'}).then(res=>{
     //   console.log(res)
