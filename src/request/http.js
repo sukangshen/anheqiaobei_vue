@@ -8,7 +8,7 @@ const service = axios.create({
 // request interceptor
 service.interceptors.request.use(
   config => {
-    config.headers={'Accept':'application/json','Authorization':'Bearer eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJpc3MiOiJodHRwOlwvXC9hcGkubG92ZS5hbmhlcWlhb2JlaS5jb21cL2FwaVwvd2VjaGF0XC9jYWxsYmFjayIsImlhdCI6MTU2ODUzMzUyOCwiZXhwIjoxNTY4NTM3MTI4LCJuYmYiOjE1Njg1MzM1MjgsImp0aSI6IkpnTTFlekN2RVk3M1FsNFkiLCJzdWIiOjcsInBydiI6Ijg3ZTBhZjFlZjlmZDE1ODEyZmRlYzk3MTUzYTE0ZTBiMDQ3NTQ2YWEifQ.GG-cHQ5H9_7607zElzu8cCtcEKKE5x6Zk_0qvtaVAvk','X-Token':''}
+    config.headers={'Accept':'application/json','Authorization':'Bearer eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJpc3MiOiJodHRwOlwvXC9hcGkubG92ZS5hbmhlcWlhb2JlaS5jb21cL2FwaVwvd2VjaGF0XC9jYWxsYmFjayIsImlhdCI6MTU3MjE2MDExNiwiZXhwIjoxNTcyMTYzNzE2LCJuYmYiOjE1NzIxNjAxMTYsImp0aSI6ImtpaUFyc1ZtZmJpVzFHWkkiLCJzdWIiOjksInBydiI6Ijg3ZTBhZjFlZjlmZDE1ODEyZmRlYzk3MTUzYTE0ZTBiMDQ3NTQ2YWEifQ.0hBXc9EKFqlRE4lJ28oQO_km0tNIO72yH06WinCie0c'}
     // config.headers['X-Token'] = '';
     return config
   },

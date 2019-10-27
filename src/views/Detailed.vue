@@ -1,22 +1,31 @@
 <template>
   <div class="release">
-    <div class="head">
-      <van-swipe :autoplay="3000" indicator-color="#1989fa">
+    <div class="head"  @click="goPreview">
+      <van-swipe :autoplay="3000" indicator-color="#333">
         <van-swipe-item>
           <img src="@/static/img/nv1.jpg" alt class="imgClass" />
         </van-swipe-item>
         <van-swipe-item>
-          <img src="@/static/img/nv1.jpg" alt class="imgClass" />
+          <img src="@/static/img/nv2.jpg" alt class="imgClass" />
         </van-swipe-item>
         <van-swipe-item>
-          <img src="@/static/img/nv1.jpg" alt class="imgClass" />
-        </van-swipe-item>
-        <van-swipe-item>
-          <img src="@/static/img/nv1.jpg" alt class="imgClass" />
+          <img src="@/static/img/nv3.jpg" alt class="imgClass" />
         </van-swipe-item>
       </van-swipe>
     </div>
-
+<van-image-preview
+  v-model="preview"
+  :images="images"
+  @change="onChange">
+  <template v-slot:index>{{index+1}}/{{images.length}}</template>
+</van-image-preview>
+<div class="brief">
+  <p><img src="https://img.yzcdn.cn/2.jpg" alt="">爱上猴神大叔</p>
+  <div>
+    <p>99年 | 167cm | 45kg</p>
+    <p>河北石家庄 | 现居北京</p>
+  </div>
+  </div>  
     <div class="easy">
       <span>个人介绍：</span>
       <div>
@@ -40,22 +49,36 @@
 export default {
   name: "detailed",
   data() {
-    return {};
+    return {
+      preview: false,
+      index: 0,
+      images: [
+        'https://img.yzcdn.cn/2.jpg',
+        'https://img.yzcdn.cn/2.jpg'
+      ]
+    };
   },
-  methods: {},
+  methods: {
+    onChange(index) {
+      this.index = index;
+    },
+    goPreview(){
+      this.preview=true;
+    }
+  },
   mounted() {
-    document.body.style.background = "#fafafa";
   }
 };
 </script>
 <style lang='scss' scoped>
 .head {
   width: 100%;
-  height: 4rem;
+  height: 6rem;
   position: relative;
   .imgClass {
     width: 100%;
-    height: 4rem;
+    height: 6rem;
+    object-fit: contain; 
   }
 }
 .van-swipe {
@@ -63,41 +86,54 @@ export default {
   height: 100%;
 }
 .easy {
-  font-size: 0.26rem;
+  font-size: 0.24rem;
   background: #fff;
-  padding: 0 0.25rem;
   box-sizing: border-box;
   margin: 0.2rem 0;
 }
 .easy > span {
-  height: 0.6rem;
-  line-height: 0.6rem;
   display: block;
-  border-bottom: 1px solid #eee;
-  font-size: 0.22rem;
-  color: #999;
+  border-left: 3px solid #2b4cfd;
+  font-size: 0.24rem;
+  color: #333;
+  padding-left:0.1rem; 
+  margin-left: 0.25rem;
+  margin-bottom: 0.05rem;
 }
 .easy > div {
   width: 100%;
   box-sizing: border-box;
-  padding: 0.2rem 0;
+  padding: 0.2rem 0.25rem;
+  border-bottom: 1px solid #eee;
+  line-height: 0.36rem;
+  color: #666;
 }
-.basic {
-  position: absolute;
-  font-size: 0.26rem;
-  width: 100%;
+.brief{
+  height: 1.5rem;
+  border-bottom: 1px solid #eee;
   box-sizing: border-box;
-  padding: 0 0.26rem;
-  background: #fff;
-  height: 1.1rem;
-  background: rgba(0, 0, 0, 0.4);
-  bottom: 0;
-  left: 0;
-}
-.basic > p {
-  color: #fff;
-}
-.basic > p:nth-child(1) {
-  margin: 0.15rem 0 0.05rem;
+  padding: 0 0.25rem;
+  margin-top: 0.2rem;
+  &>p{
+    font-size: 0.3rem;
+    height: 0.6rem;
+    line-height: 0.6rem;
+    img{
+      width: 0.5rem;
+      height: 0.5rem;
+      vertical-align: top;
+      margin-top: 0.05rem;
+      border-radius: 50%;
+      margin-right: 0.1rem;
+    }
+    padding-bottom: 0.05rem;
+  }
+  div{
+    font-size: 0.24rem;
+    p{
+      color: #999;
+      padding-bottom: 0.05rem;
+    }
+  }
 }
 </style>

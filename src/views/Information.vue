@@ -3,8 +3,8 @@
     <div class="portrait"></div>
     <div class="content">
       <div>
-        <img src="@/static/img/nv3.jpg" alt="">
-        <span>栀子花开</span>
+        <img :src="headimgurl" alt="">
+        <span>{{nickName}}</span>
       </div>
       <ul class="list">
         <li style="border-top:1px solid #eee">
@@ -21,16 +21,23 @@
 </template>
 
 <script>
+import { my} from "@/request/api.js";
 export default {
   name: "information",
   data() {
-    return {};
+    return {
+      nickName:'',
+      headimgurl:''
+    };
   },
   methods: {},
-  created() {
-    document.body.style.background = "#fff";
-  },
-  mounted() {}
+  mounted() {
+    my({}).then(res=>{
+      console.log(res);
+      this.nickName=res.nickname;
+      this.headimgurl=res.headimgurl
+    })
+  }
 };
 </script>
 <style lang="scss" scoped>
@@ -64,7 +71,7 @@ export default {
       }
       span{
         float: left;
-        font-size: 0.26rem;
+        font-size: 0.28rem;
         color: #fff;
         padding-top: 0.13rem
       }

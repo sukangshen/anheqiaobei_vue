@@ -21,8 +21,6 @@ export default {
   name: "home",
   data() {
     return {
-      selected: "/home",
-      currIndex: 0,
       active: "",
       tabbars: [
         {
@@ -46,20 +44,19 @@ export default {
       ]
     };
   },
-  watch: {
-    active(newVal, oldVal) {
-      // this.$router.push(newVal);
-    }
-  },
   methods: {
     tab(i,path){
-      this.currIndex = i;
+      this.active=i;
+      localStorage.active=i;
       this.$router.push(path);
     }
   },
   mounted() {
-    this.active=0;
-    this.selected = this.$route.path;
+    if(localStorage.active){
+      this.active=Number(localStorage.active);
+    }else{
+      this.active=0;
+    }
     // fetchList({'target_url':'https://www.baidu.com/'}).then(res=>{
     //   console.log(res)
     // })

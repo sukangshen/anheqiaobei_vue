@@ -30,3 +30,10 @@ export function imgUpload(data) {
     data
   })
 }
+export function my(data) {
+  return request({
+    url: '/api/wechat/me',
+    method: 'post',
+    data
+  })
+}

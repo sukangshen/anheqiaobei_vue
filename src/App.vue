@@ -25,4 +25,7 @@ body{
 .van-toast__text{
   color: #fff
 }
+.van-swipe__indicator{
+  background: #333 !important;
+}
 </style>

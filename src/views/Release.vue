@@ -7,13 +7,13 @@
       <div class="form">
         <ul>
           <li>
-            <span>姓名</span>
+            <span><img src="@/static/img/name.png" alt="">姓名</span>
             <div>
               <input v-model="userName" placeholder="请输入用户名" />
             </div>
           </li>
           <li>
-            <span>性别</span>
+            <span><img src="@/static/img/sex.png" alt="">性别</span>
             <div>
               <van-radio-group
                 v-model="gender"
@@ -25,48 +25,56 @@
             </div>
           </li>
           <li>
-            <span>身高</span>
+            <span><img src="@/static/img/height.png" alt="">身高</span>
             <div>
-              <input v-model="height" placeholder="单位（cm）" />
+              <input v-model="height" placeholder="单位（cm）" type='number'/>
             </div>
           </li>
           <li>
-            <span>体重</span>
+            <span><img src="@/static/img/weight.png" alt="">体重</span>
             <div>
-              <input v-model="weight" placeholder="单位（kg）" />
+              <input v-model="weight" placeholder="单位（kg）" type='number'/>
             </div>
           </li>
           <li>
-            <span>出生日期</span>
+            <span><img src="@/static/img/birthday.png" alt="">出生日期</span>
             <div @click="dateShow=true;">
-              <input v-model="dateVal" placeholder="年/月/日" />
+              <input v-model="dateVal" placeholder="年/月/日" disabled/>
             </div>
           </li>
           <li>
-            <span>籍贯</span>
-            <div>
-              <input v-model="address" placeholder="请选择籍贯" @click="addressShow=true;" />
+            <span><img src="@/static/img/family.png" alt="">籍贯</span>
+            <div @click="addressType=0;addressShow=true;">
+              <input v-model="address_birth_name" placeholder="请选择籍贯" disabled/>
+            </div>
+          </li>
+          <li>
+            <span><img src="@/static/img/address.png" alt="">所在地</span>
+            <div @click="addressType=1;addressShow=true;">
+              <input v-model="address_live_name" placeholder="请选择所在地" disabled/>
             </div>
           </li>
           <li style="height:1.8rem;padding-bottom:0.2rem">
-            <span>个人介绍</span>
+            <span><img src="@/static/img/introduce.png" alt="">个人介绍</span>
             <div>
-              <textarea rows="3" v-model="self_intro" placeholder="介绍自己有趣的灵魂吧"></textarea>
+              <textarea rows="3" v-model="self_intro" placeholder="介绍自己有趣的灵魂吧" maxlength="200"></textarea>
             </div>
+            <a>{{self_intro.length}}/200</a>
           </li>
           <li style="height:1.8rem">
-            <span>择偶标准</span>
+            <span><img src="@/static/img/introduce.png" alt="">择偶标准</span>
             <div>
-              <textarea rows="3" v-model="friend_condition" placeholder="对另一半有什么要求呢"></textarea>
+              <textarea rows="3" v-model="friend_condition" placeholder="对另一半有什么要求呢" maxlength="200"></textarea>
             </div>
+            <a>{{friend_condition.length}}/200</a>
           </li>
         </ul>
       </div>
       <div class="loadTit">
         <span>上传照片</span>
-        <a>最多可上传6张图片</a>
+        <a>最多可上传10张图片</a>
       </div>
-      <van-uploader v-model="preview1" :max-count="6" :before-read="beforeRead1" :before-delete='beforeDelete1'/>
+      <van-uploader v-model="preview1" :max-count="10" :before-read="beforeRead1" :before-delete='beforeDelete1'/>
       <div class="loadTit">
         <span>上传微信二维码</span>
       </div>
@@ -86,11 +94,10 @@
         @confirm="confirm"
       />
     </van-popup>
-    <van-popup v-model="addressShow" v-if="addressShow" position="bottom">
+    <van-popup v-model="addressShow" position="bottom">
       <van-area
         :area-list="areaList"
-        v-model="address"
-        :value="dizhi"
+        value="110101"
         @confirm="addressConfirm"
         @cancel="addressShow=false;"
       />
@@ -99,11 +106,11 @@
 </template>
 
 <script>
-import { release, imgUpload } from "@/request/api.js";
+import { release, imgUpload} from "@/request/api.js";
 import areas from "@/static/js/area.js";
 import moment from "moment";
 import axios from "axios";
-import { Toast } from 'vant';
+import { Toast ,Dialog} from 'vant';
 export default {
   name: "release",
   data() {
@@ -131,10 +138,14 @@ export default {
       dateVal: "",
       self_intro: "",
       friend_condition: "",
-      address: "",
+      address_live: "",
+      address_birth:'',
+      address_live_name:'',
+      address_birth_name:'',
+      addressType:0,
       weight: "",
       height: "",
-      gender: "1",
+      gender: '',
       areaList: areas
     };
   },
@@ -218,22 +229,32 @@ export default {
       // }
     },
     submit() {
+      if(this.imgList1.length<1||this.imgList2.length<1||this.gender==''||this.userName==''||this.height==''||this.weight==''||this.dateVal==''||this.address_live==''||this.address_birth==''||this.self_intro==''||this.friend_condition==''){
+        Toast('请将您的信息填写完整');
+        return;
+      }
+      Dialog.confirm({
+        title: '提示',
+        message: '确定要发布吗？'
+      }).then(() => {
+        // on confirm
+      }).catch(() => {
+        // on cancel
+      });
       release({
         self_img: this.imgList1,
         wechat_img: this.imgList2,
-        gender: "1",
-        // address: "河南省周口市",
-        age: "123",
+        gender: this.gender,
+        age: this.dateVal,
         height: this.height,
         weight: this.weight,
         self_intro: this.self_intro,
         friend_condition: this.friend_condition,
-        address_live:'123',
-        address_live_name:'123',
-        address_birth:'123',
-        address_birth_name:'123'
+        address_live:this.address_live,
+        address_live_name:this.address_live_name,
+        address_birth:this.address_birth,
+        address_birth_name:this.address_birth_name
       }).then(res => {
-        console.log(res);
         if(res.status){
           Toast("发布成功");
         }
@@ -241,14 +262,16 @@ export default {
     },
     addressConfirm(e) {
       console.log(e);
-      var location = e[0].name + "/" + e[1].name + "/" + e[2].name;
-      this.address = location;
+      var location = e[0].name + "-" + e[1].name + "-" + e[2].name;
+      var codes = e[0].code + "-" + e[1].code + "-" + e[2].code;
+      if(this.addressType==0){
+        this.address_birth_name=location;
+        this.address_birth=codes;
+      }else{
+        this.address_live_name = location;
+        this.address_live=codes;
+      }
       this.addressShow = false;
-      this.dizhi = [
-        { code: "110000", name: "北京市" },
-        { code: "110100", name: "北京市" },
-        { code: "110101", name: "东城区" }
-      ];
     },
     confirm() {
       var filterVal = moment(this.value).format("YYYY-MM-DD");
@@ -265,22 +288,6 @@ export default {
       }
       return value;
     },
-    // 发布
-    sub() {
-      release({
-        self_img: this.imgList1,
-        wechat_img: this.imgList2,
-        gender: "1",
-        address: "河南省周口市",
-        age: "123",
-        height: this.height,
-        weight: this.weight,
-        self_intro: this.self_intro,
-        friend_condition: this.friend_condition
-      }).then(res => {
-        console.log(res);
-      });
-    }
     // 解析base64格式
     // files(e) {
     //   console.log(e.target.files[0]);
@@ -309,18 +316,25 @@ export default {
 .top .loadTit {
   height: 0.8rem;
   line-height: 0.8rem;
+  display: flex;
+  justify-content:space-between;
 }
 .loadTit > span {
-  float: left;
   color: #333;
   font-weight: 500;
+  line-height: 0.8rem;
 }
+.loadTit > span::before{
+  content: '|';
+  color: #2b4cfd;
+  font-size: 0.3rem;
+  font-weight: 600;
+  padding-right: 0.05rem
+;}
 .loadTit > a {
   font-size: 0.22rem;
   color: #999;
-  float: right;
 }
-
 .form {
   ul {
     li {
@@ -329,26 +343,44 @@ export default {
       border-bottom: 1px solid #eee;
       line-height: 0.8rem;
       box-sizing: border-box;
-      padding: 0 0.2rem;
+      padding: 0 0.2rem 0 0;
       display: flex;
+      position: relative;
+      a{
+        display: inline-block;
+        position:absolute;
+        bottom: 0.2rem;
+        right: 0.3rem;
+        line-height: 0;
+        background: #fff;
+        color: #aaa;
+      }
       div {
         flex: 1;
         input {
           width: 100%;
           height: 100%;
+          background: #fff;
         }
         textarea {
           width: 100%;
-          height: 100%;
+          height: 80%;
           line-height: 0.5rem;
           box-sizing: border-box;
-          padding: 0.1rem 0 0.3rem;
+          padding: 0.1rem 0 0.1rem;
         }
       }
       span {
         display: inline-block;
-        width: 1.5rem;
+        width: 1.8rem;
         // text-align: right
+        img{
+          width: 0.3rem;
+          height: 0.3rem;
+          vertical-align: top;
+          margin-top: 0.26rem;
+          margin-right: 0.1rem;
+        }
       }
     }
   }

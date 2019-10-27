@@ -7,7 +7,7 @@
       <ul>
         <li v-for="(item,i) in list" :key="i" @click="goDetail">
           <img :src="item['self_img']?item['self_img'][0]:'http://img4.imgtn.bdimg.com/it/u=1212738062,1791075344&fm=26&gp=0.jpg'" alt="">
-          <div><p class="username">善良的毛豆{{item.age}}/{{item.height}}/{{item.weight}}</p></div>
+          <div><span style="float:left">善良的毛豆</span> <span style="float:right">{{item.age}}岁 | {{item.address_live.split('-')[0]}}</span></div>
         </li>
       </ul>
     </div>
@@ -41,9 +41,12 @@ export default {
     },
   },
   mounted(){
-    // location.href='http://api.love.anheqiaobei.com/api/wechat/auth?target_url=https://www.baidu.com/';
+    if(location.href.includes('token')){
+
+    }else{
+      // location.href='http://api.love.anheqiaobei.com/api/wechat/auth?target_url=https://www.baidu.com/';
+    }
     getList({limit:'20'}).then(res=>{
-      console.log(res.data.data);
       this.list=res.data.data;
     })
   }
@@ -52,9 +55,8 @@ export default {
 <style  scoped>
   .about{
     width: 100%;
-  padding: 0 0.25rem;
-box-sizing: border-box;
-
+    padding: 0 0.25rem;
+    box-sizing: border-box;
   }
   .top{
     font-size: 0.3rem;
@@ -83,7 +85,8 @@ box-sizing: border-box;
   .cont ul>li>img{
     width: 100%;
     height: 3.8rem;
-    vertical-align: middle
+    object-fit: cover;
+    vertical-align: middle;
   }
   .cont ul>li>div{
     width: 100%;
@@ -91,8 +94,8 @@ box-sizing: border-box;
     line-height: 0.3rem;
     font-size: 0.2rem;
     box-sizing: border-box;
-    border-left: 1px solid #2b4cfd;
-    margin: 0.1rem 0
+    margin: 0.1rem 0;
+    padding: 0 0.1rem;
   }
 
 </style>
