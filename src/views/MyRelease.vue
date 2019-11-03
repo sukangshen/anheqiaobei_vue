@@ -22,7 +22,7 @@ export default {
   },
   methods: {},
   mounted() {
-      createOrder({openid:sessionStorage.openId}).then(res=>{
+      createOrder({openid:sessionStorage.openId,total_fee:'0.1',goods_name:'爱情'}).then(res=>{
         alert(JSON.stringify(res));
       })
   }

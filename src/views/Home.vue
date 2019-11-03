@@ -65,8 +65,8 @@ export default {
   mounted() {
     if(location.href.includes('open_id')){
       sessionStorage.openId=this.$route.query.open_id;
+      alert(sessionStorage.openId);
     }
-    alert(sessionStorage.openId);
     if(sessionStorage.active){
       this.active=Number(sessionStorage.active);
     }else{
