@@ -39,22 +39,22 @@
           <li>
             <span><img src="@/static/img/birthday.png" alt="">出生日期</span>
             <div @click="dateShow=true;">
-              <input  v-if="dateVal!=''" v-model="dateVal" placeholder="年/月/日" disabled/>
-              <div v-else>年/月/日</div>
+              <input  v-if="dateVal==''" v-model="dateVal" placeholder="年/月/日" disabled/>
+              <div v-else>{{address_birth_name}}</div>
             </div>
           </li>
           <li>
             <span><img src="@/static/img/family.png" alt="">籍贯</span>
             <div @click="addressType=0;addressShow=true;">
-              <input  v-if="address_birth_name!=''" v-model="address_birth_name" placeholder="请选择籍贯" disabled/>
-              <div v-else>请选择籍贯</div>
+              <input  v-if="address_birth_name==''" v-model="address_birth_name" placeholder="请选择籍贯" disabled/>
+              <div v-else>{{address_birth_name}}</div>
             </div>
           </li>
           <li>
             <span><img src="@/static/img/address.png" alt="">所在地</span>
             <div @click="addressType=1;addressShow=true;">
-              <input v-if="address_live_name!=''" v-model="address_live_name" placeholder="请选择所在地" disabled/>
-              <div v-else>请选择所在地</div>
+              <input v-if="address_live_name==''" v-model="address_live_name" placeholder="请选择所在地" disabled/>
+              <div v-else>{{address_live_name}}</div>
             </div>
           </li>
           <li style="height:1.8rem;padding-bottom:0.2rem">
