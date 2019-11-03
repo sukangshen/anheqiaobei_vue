@@ -33,8 +33,8 @@ export default {
   methods: {},
   mounted() {
     my({}).then(res=>{
-      this.nickName=res.nickname;
-      this.headimgurl=res.headimgurl
+      this.nickName=res.data.nickname;
+      this.headimgurl=res.data.headimgurl
     })
   }
 };
