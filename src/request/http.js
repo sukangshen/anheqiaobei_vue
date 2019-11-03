@@ -24,11 +24,6 @@ service.interceptors.response.use(
     const res = response.data;
     if (res.code != 200) {
       alert(res.message);
-      // Message({
-      //   message: res.message || 'Error',
-      //   type: 'error',
-      //   duration: 5 * 1000
-      // })
       return res;
     } else {
       return res

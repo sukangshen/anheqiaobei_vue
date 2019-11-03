@@ -48,6 +48,16 @@ export function createOrder(data) {
     url: '/api/wechat/createOrder',
     method: 'post',
     data:data
+  }).then(res=>{
+    wx.config({
+        debug: false,
+        appId: res.appId,
+        timestamp: res.timestamp,
+        nonceStr: res.nonceStr,
+        signature: res.signature,
+        jsApiList: ["chooseWXPay"]
+    });
+    resolve(res);
   })
 }
 
