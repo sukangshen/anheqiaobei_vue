@@ -18,16 +18,14 @@ export default {
       createOrder({openid:sessionStorage.openId,total_fee:'1',goods_name:'爱情'}).then(res=>{
         alert(JSON.stringify(res));
         wx.config({
-          debug: false,
-          appId: res.data.appId,
-          timestamp: res.data.timestamp,
-          nonceStr: res.data.nonceStr,
-          signature: res.data.signature,
-          jsApiList: ["chooseWXPay"]
-      });
-      wx.error(function(res) {
-        alert(JSOn.stringify(res));
-        });
+                    debug: false,
+                    appId: res.data.appId,
+                    timestamp: res.data.timestamp,
+                    nonceStr: res.data.nonceStr,
+                    signature: res.data.sign,
+                    jsApiList: ["chooseWXPay"]
+                });
+                // resolve(res);
       })
   }
 };
