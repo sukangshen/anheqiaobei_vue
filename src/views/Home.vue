@@ -63,6 +63,7 @@ export default {
     }
   },
   mounted() {
+    alert(location.href);
     if(sessionStorage.active){
       this.active=Number(sessionStorage.active);
     }else{
