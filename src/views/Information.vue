@@ -33,8 +33,9 @@ export default {
   methods: {},
   mounted() {
     my({}).then(res=>{
-      this.nickName=res.data.nickname;
-      this.headimgurl=res.data.headimgurl
+      alert(JSON.stringify(res));
+      this.nickName=res.data.data.nickname;
+      this.headimgurl=res.data.data.headimgurl
     })
   }
 };
