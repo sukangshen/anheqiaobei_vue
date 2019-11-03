@@ -21,19 +21,18 @@ service.interceptors.request.use(
 // response interceptor
 service.interceptors.response.use(    
   response => {
-    const res = response.data
-    // if the custom code is not 20000, it is judged as an error.
-    // if (res.code != 0) {
-    //   alert(res.message);
-    //   // Message({
-    //   //   message: res.message || 'Error',
-    //   //   type: 'error',
-    //   //   duration: 5 * 1000
-    //   // })
-    //   return Promise.reject(new Error(res.message || 'Error'))
-    // } else {
+    const res = response.data;
+    if (res.code != 200) {
+      alert(res.message);
+      // Message({
+      //   message: res.message || 'Error',
+      //   type: 'error',
+      //   duration: 5 * 1000
+      // })
+      return res;
+    } else {
       return res
-    // }
+    }
   },
   error => {
     Indicator.close();

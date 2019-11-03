@@ -40,6 +40,11 @@ export default new Router({
       name: 'detailed',
       component: () => import('@/views/Detailed.vue')
     },
+    {
+      path: '/myRelease',
+      name: 'myRelease',
+      component: () => import('@/views/MyRelease.vue')
+    },
     
   ]
 })

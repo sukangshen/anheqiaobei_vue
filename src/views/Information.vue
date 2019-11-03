@@ -7,7 +7,7 @@
         <span>{{nickName}}</span>
       </div>
       <ul class="list">
-        <li style="border-top:1px solid #eee">
+        <li style="border-top:1px solid #eee" @click="$router.push('/myRelease')">
           <span>我的发布</span>
           <img src="@/assets/right.png" alt />
         </li>
