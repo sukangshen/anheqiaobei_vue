@@ -1,7 +1,7 @@
 <template>
   <div class="home">
     <router-view />
-    <van-tabbar fixed	 v-model="active" style="background:#fafafa">
+    <van-tabbar class="tabs" v-model="active" style="background:#fafafa">
       <van-tabbar-item
       v-for="(item,index) in tabbars"
       :key="index"
@@ -83,7 +83,7 @@ export default {
       sessionStorage.token=this.$route.query.token;
     }else{
       var en = escape('http://love.anheqiaobei.com/#/home');
-      // location.href='http://api.love.anheqiaobei.com/api/wechat/auth?target_url='+en;
+      location.href='http://api.love.anheqiaobei.com/api/wechat/auth?target_url='+en;
     }
 
   }
@@ -103,5 +103,8 @@ export default {
 }
 .active{
   color: #2b4cfd
+}
+.tabs{
+  position: absolute;
 }
 </style>

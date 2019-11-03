@@ -51,18 +51,20 @@ export default {
 <style  scoped>
   .about{
     width: 100%;
-    padding: 0 0.25rem;
-    box-sizing: border-box;
+    /* padding: 0 0.25rem; */
+    /* box-sizing: border-box; */
   }
   .top{
-    font-size: 0.3rem;
-    margin: 0.2rem 0 0.5rem;
+    font-size: 0.28rem;
+    margin: 0.2rem 0 0.3rem;
+    text-align: center;
   }
   .top>span{
     margin-right: 0.2rem;
     padding-bottom: 0.08rem;
+    color: #999;
   }
-  .activeClass{
+  .top .activeClass{
     color: #333;
     box-sizing: border-box;
     border-bottom: 3px solid #2b4cfd;
@@ -74,7 +76,7 @@ export default {
     margin-bottom: 1rem;
   }
   .cont ul>li{
-    width: 2.94rem;
+    width: 3.19rem;
     height: 4.3rem;
     overflow: hidden;
   }
