@@ -1,6 +1,6 @@
 <template>
   <div class="myRelease">
-    123
+    <button @click="sub">123</button>
   </div>
 </template>
 
@@ -15,7 +15,7 @@ export default {
   },
   methods: {
      onBridgeReady(params) {
-            const pay_params = JSON.parse(params);
+            const pay_params = params;
             WeixinJSBridge.invoke(
                 'getBrandWCPayRequest', {
                     "appId": pay_params.appId,  //公众号名称，由商户传入     
@@ -23,7 +23,7 @@ export default {
                     "nonceStr": pay_params.nonceStr,  //随机串     
                     "package": pay_params.package,     
                     "signType": pay_params.signType,  //微信签名方式：     
-                    "paySign": pay_params.paySign  //微信签名 
+                    "paySign": pay_params.sign  //微信签名 
                 },
                 function(res){
                     if(res.err_msg == "get_brand_wcpay_request:ok" ){
@@ -31,31 +31,8 @@ export default {
                 } 
             }); 
         },
-        wxpay() {
-            axios.post(url,data)
-            .then((res) => {
-                if(res.code == 200) {
-                    const pay_params = res.data.jsApiParameters
-                    if (typeof WeixinJSBridge == "undefined"){
-                        if( document.addEventListener ){
-                            document.addEventListener('WeixinJSBridgeReady', onBridgeReady, false);
-                        }else if (document.attachEvent){
-                            document.attachEvent('WeixinJSBridgeReady', onBridgeReady); 
-                            document.attachEvent('onWeixinJSBridgeReady', onBridgeReady);
-                        }
-                        }else{
-                        this.onBridgeReady(pay_params);
-                    }
-                }else{
-                    alert('微信支付调起失败！');
-                }
-            }).catch((err) => {
-                console.log(err);
-            })
-        },
-  },
-  mounted() {
-      createOrder({openid:sessionStorage.openId,total_fee:'1',goods_name:'爱情'}).then(res=>{
+        sub(){
+createOrder({openid:sessionStorage.openId,total_fee:'1',goods_name:'爱情'}).then(res=>{
         alert(JSON.stringify(res));
         const pay_params = res.data;
                     if (typeof WeixinJSBridge == "undefined"){
@@ -76,8 +53,12 @@ export default {
               //       signature: res.data.sign,
               //       jsApiList: ["chooseWXPay"]
               //   });
-                // resolve(res);
       })
+        }
+      
+  },
+  mounted() {
+      
   }
 };
 </script>
