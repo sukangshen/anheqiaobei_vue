@@ -143,7 +143,7 @@ export default {
     flex-wrap: wrap;
     li {
       width: 3.19rem;
-      height: 4.3rem;
+      height: 4.38rem;
       overflow: hidden;
       img {
         width: 100%;
@@ -157,8 +157,8 @@ export default {
 
 .cont ul > li > div {
   width: 100%;
-  height: 0.5rem;
-  line-height: 0.5rem;
+  height: 0.56rem;
+  line-height: 0.56rem;
   font-size: 0.22rem;
   box-sizing: border-box;
   padding: 0 0.05rem;
@@ -171,12 +171,12 @@ export default {
   max-width: 1rem;
 }
 .cont ul > li > div > img {
-  width: 0.36rem;
-  height: 0.36rem;
+  width: 0.4rem;
+  height: 0.4rem;
   float: left;
   border-radius: 50%;
-  margin-right: 0.07rem;
+  margin-right: 0.05rem;
   vertical-align: top;
-  margin-top: 0.05rem;
+  margin-top: 0.08rem;
 }
 </style>
