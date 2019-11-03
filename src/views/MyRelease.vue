@@ -25,6 +25,9 @@ export default {
           signature: res.data.signature,
           jsApiList: ["chooseWXPay"]
       });
+      wx.error(function(res) {
+        alert(JSOn.stringify(res));
+        });
       })
   }
 };
