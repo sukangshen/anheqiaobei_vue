@@ -33,7 +33,6 @@ export default {
   methods: {},
   mounted() {
     my({}).then(res=>{
-      console.log(res);
       this.nickName=res.nickname;
       this.headimgurl=res.headimgurl
     })

@@ -22,7 +22,7 @@ export default {
   },
   methods: {},
   mounted() {
-    alert(this.$route.query.open_id);
+      alert(location.href);
       createOrder({openid:this.$route.query.open_id}).then(res=>{
         alert(JSON.stringify(res));
       })
