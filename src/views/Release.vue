@@ -39,21 +39,24 @@
           <li>
             <span><img src="@/static/img/birthday.png" alt="">出生日期</span>
             <div @click="dateShow=true;">
-              <input  v-if="dateVal==''" v-model="dateVal" placeholder="年/月/日" disabled/>
-              <div v-else>{{address_birth_name}}</div>
+              <div v-if="dateVal==''" style="color:#999">年/月/日</div>
+              <!-- <input  v-if="dateVal==''" v-model="dateVal" placeholder="年/月/日" disabled/> -->
+              <div v-else>{{dateVal}}</div>
             </div>
           </li>
           <li>
             <span><img src="@/static/img/family.png" alt="">籍贯</span>
             <div @click="addressType=0;addressShow=true;">
-              <input  v-if="address_birth_name==''" v-model="address_birth_name" placeholder="请选择籍贯" disabled/>
+              <div v-if="address_birth_name==''" style="color:#999">请选择籍贯</div>
+              <!-- <input  v-if="address_birth_name==''" v-model="address_birth_name" placeholder="请选择籍贯" disabled/> -->
               <div v-else>{{address_birth_name}}</div>
             </div>
           </li>
           <li>
             <span><img src="@/static/img/address.png" alt="">所在地</span>
             <div @click="addressType=1;addressShow=true;">
-              <input v-if="address_live_name==''" v-model="address_live_name" placeholder="请选择所在地" disabled/>
+              <div v-if="address_live_name==''" style="color:#999">请选择所在地</div>
+              <!-- <input v-if="address_live_name==''" v-model="address_live_name" placeholder="请选择所在地" disabled/> -->
               <div v-else>{{address_live_name}}</div>
             </div>
           </li>
@@ -398,6 +401,12 @@ export default {
           height: 100%;
           background: #fff;
         }
+        input::placeholder{
+          color: #999;
+        }
+        textarea::placeholder{
+          color: #999;
+        }
         textarea {
           width: 100%;
           height: 80%;
@@ -409,7 +418,6 @@ export default {
       span {
         display: inline-block;
         width: 1.8rem;
-        // text-align: right
         img{
           width: 0.3rem;
           height: 0.3rem;
