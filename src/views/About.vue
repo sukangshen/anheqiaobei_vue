@@ -1,5 +1,13 @@
 <template>
   <div class="about">
+    <div class="swiper">
+      <!-- <span></span> -->
+      <van-swipe :autoplay="300000" loop indicator-color="#1989fa !important">
+        <van-swipe-item v-for="(item,i) in slides" :key="i"><img :src="item.img_url" alt=""></van-swipe-item>
+      </van-swipe>
+      <!-- <span></span> -->
+    </div>
+
     <div class="top">
       <div>
         <span :class="active==1?'activeClass':''" @click="tab(1)">最新</span>
@@ -10,11 +18,16 @@
     <div class="cont" @touchend="load">
       <ul>
         <li v-for="(item,i) in list" :key="i" @click="goDetail(item.profile_id)">
+          <!-- <van-image :src="item['self_img']?item['self_img'][0]:''" style="object-fit: cover ;">
+            <template v-slot:loading>
+              <van-loading type="spinner" size="20" />
+            </template>
+          </van-image> -->
           <img
-            :src="item['self_img']?item['self_img'][0]:'http://img4.imgtn.bdimg.com/it/u=1212738062,1791075344&fm=26&gp=0.jpg'"
+            :src="item['self_img']?item['self_img'][0]:''"
             alt
           />
-          <div>
+          <div class="detail">
             <img :src="item.headimgurl" alt />
             <span style="float:left">善良的</span>
             <span style="float:right">{{item.age}}岁/{{item.address_live_name.split('-')[0]}}</span>
@@ -27,7 +40,8 @@
 </template>
 
 <script>
-import { fetchList, getList } from "@/request/api.js";
+import { fetchList, getList ,getSlide} from "@/request/api.js";
+import { Swipe, SwipeItem } from "vant";
 export default {
   name: "about",
   data() {
@@ -38,8 +52,9 @@ export default {
       list: [],
       allLoaded: false,
       msg: "上拉加载更多",
-      page:1,
-      msgBol:true
+      page: 1,
+      msgBol: true,
+      slides:[]
     };
   },
   watch: {
@@ -49,7 +64,7 @@ export default {
   },
   methods: {
     load() {
-      if(!this.msgBol){
+      if (!this.msgBol) {
         return;
       }
       this.page++;
@@ -64,7 +79,7 @@ export default {
         document.documentElement.scrollHeight || document.body.scrollHeight;
       //滚动条到底部的条件
       if (scrollTop + windowHeight >= scrollHeight) {
-        this.getList()
+        this.getList();
       }
     },
     goDetail(id) {
@@ -73,57 +88,92 @@ export default {
     tab(i) {
       this.active = i;
       if (i == 1) {
-        document.querySelector(".top a").style.left = "0.2rem";
+        document.querySelector(".top a").style.left = "0.06rem";
       } else {
-        document.querySelector(".top a").style.left = "0.94rem";
+        document.querySelector(".top a").style.left = "0.95rem";
       }
     },
-    getList(){
-      getList({ limit: "20",page:this.page}).then(res => {
-        if(res.status){
-          var arr=this.list.concat(res.data.data);
-          this.list=arr;
-          if(this.list.length==res.data.total){
-            this.msg='暂无更多数据';
-            this.msgBol=false;
+    getList() {
+      getList({ limit: "20", page: this.page }).then(res => {
+        if (res.status) {
+          var arr = this.list.concat(res.data.data);
+          this.list = arr;
+          if (this.list.length == res.data.total) {
+            this.msg = "暂无更多数据";
+            this.msgBol = false;
           }
         }
-    });
+      });
     }
   },
   mounted() {
-    this.getList()
+    this.getList();
+    getSlide().then(res=>{
+      console.log(res.data);
+      this.slides=res.data;
+    })
   }
 };
 </script>
 <style lang='scss' scoped>
 .about {
   width: 100%;
-  /* padding: 0 0.25rem; */
-  /* box-sizing: border-box; */
+  .swiper{
+    height: 2.3rem;
+    position: relative;
+    // span{
+    //   display: block;
+    //   position: absolute;
+    //   width: 0.1rem;
+    //   height: 2.3rem;
+    //   top: 0;
+    //   background: #2b4cfd;
+    //   &:nth-of-type(1){
+    //     left: 0;
+    //     border-radius: 0 5px 5px 0;
+    //   }
+    //   &:nth-of-type(2){
+    //     right: 0;
+    //     border-radius: 5px 0px 0px 5px;
+    //   }
+    // }
+    .van-swipe{
+      width: 6.2rem;
+      margin: 0.1rem auto 0;
+      border-radius: 0.1rem;
+      overflow: hidden;
+      height: 2.3rem;
+      .van-swipe-item{
+        img{
+          width: 100%;
+          height: 100%;
+        }
+      }
+    }
+  }
 }
 .top {
   font-size: 0.28rem;
   margin: 0.2rem 0 0.15rem;
-  text-align: center;
 }
 .top > div {
-  width: 1.5rem;
-  margin: 0 auto;
+  width: 2rem;
   position: relative;
   height: 0.45rem;
+  margin-left: 0.15rem;
   a {
     display: block;
     position: absolute;
-    width: 0.2rem;
-    height: 0.05rem;
+    width: 0.28rem;
+    height: 0.03rem;
     background: #2b4cfd;
     bottom: 0;
-    left: 0.2rem;
+    left: 0.06rem;
+    border-radius: 0.08rem;
   }
 }
 .top span {
-  margin-right: 0.15rem;
+  margin-right: 0.35rem;
   padding-bottom: 0.08rem;
   color: #999;
 }
@@ -145,17 +195,16 @@ export default {
       width: 3.19rem;
       height: 4.38rem;
       overflow: hidden;
-      img {
-        width: 100%;
-        height: 3.8rem;
-        object-fit: cover;
-        vertical-align: middle;
-      }
+       img {
+          width: 100%;
+          height: 3.8rem;
+          object-fit: cover;
+          vertical-align: middle;
+        }
     }
   }
 }
-
-.cont ul > li > div {
+.cont ul > li > .detail {
   width: 100%;
   height: 0.56rem;
   line-height: 0.56rem;

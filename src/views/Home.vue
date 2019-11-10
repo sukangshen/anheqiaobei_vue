@@ -1,7 +1,7 @@
 <template>
   <div class="home">
     <router-view />
-    <van-tabbar fixed v-model="active" style="background:#fafafa">
+    <van-tabbar fixed v-model="active" style="background:#fafafa" v-show="btmBol">
       <van-tabbar-item
       v-for="(item,index) in tabbars"
       :key="index"
@@ -21,6 +21,7 @@ export default {
   name: "home",
   data() {
     return {
+      btmBol:true,
       active: "",
       tabbars: [
         {
@@ -45,7 +46,7 @@ export default {
     };
   },
   watch:{
-    $route(to,from){
+    $route(to){
       if(to.path=='/about'){
         this.active=0;
       }else if(to.path=='/release'){
@@ -60,6 +61,7 @@ export default {
       this.active=i;
       sessionStorage.active=i;
       this.$router.push(path);
+      scrollTo(0,0);
     }
   },
   mounted() {
@@ -80,6 +82,10 @@ export default {
         this.active=2;
       }
     }, false);
+
+
+
+
     if(sessionStorage.token){
       // 如果存在什么也不做，直接用token就行
     }else if(location.href.includes('token')){
@@ -88,6 +94,24 @@ export default {
       var en = escape('http://love.anheqiaobei.com/#/home');
       location.href='http://api.love.anheqiaobei.com/api/wechat/auth?target_url='+en;
     }
+
+
+    var that = this;
+    let win = window.innerHeight;
+    window.addEventListener(
+      "resize",
+      function() {
+        if (win > window.innerHeight) {
+          that.btmBol = false;
+          win = window.innerHeight;
+        } else {
+          that.btmBol = true;
+          win = window.innerHeight;
+        }
+        scrollTo(0,0);
+      },
+      false
+    );
   }
 };
 </script>

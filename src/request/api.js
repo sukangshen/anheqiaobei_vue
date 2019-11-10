@@ -50,6 +50,21 @@ export function createOrder(data) {
     data:data
   })
 }
+export function getSlide() {
+  return request({
+    url: '/api/wechat/getSlides',
+    method: 'get',
+    data:{}
+  })
+}
+export function getTagList() {
+  return request({
+    url: '/api/wechat/getTagList',
+    method: 'get',
+    data:{}
+  })
+}
+
 
 
 
