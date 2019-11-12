@@ -2,7 +2,7 @@
   <div class="about">
     <div class="swiper">
       <!-- <span></span> -->
-      <van-swipe :autoplay="300000" loop indicator-color="#1989fa !important">
+      <van-swipe :autoplay="2000" loop indicator-color="#1989fa !important">
         <van-swipe-item v-for="(item,i) in slides" :key="i"><img :src="item.img_url" alt=""></van-swipe-item>
       </van-swipe>
       <!-- <span></span> -->
