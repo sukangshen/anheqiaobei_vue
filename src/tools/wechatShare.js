@@ -3,7 +3,7 @@ import wx from "weixin-js-sdk";
 import { Toast } from "vant";
 
 export default function WxShare(shareObj) {
-    console.log(shareObj);
+    alert('请求数据'+JSON.stringify(shareObj));
     return new Promise((resolve, reject) => {
         let url = encodeURIComponent(window.location.href.split("#")[0]);
         getTicket({
