@@ -11,7 +11,7 @@ export default function WxShare(shareObj) {
         })
             .then(res => {
 
-                console.log('appId'+res.data.appId);
+                alert('返回请求数据'+JSON.stringify(res));
                 wx.config({
                     debug: false,
                     appId: res.data.appId,
