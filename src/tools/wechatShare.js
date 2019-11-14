@@ -40,8 +40,8 @@ export default function WxShare(shareObj) {
                 wx.ready(function() {
                     wx.onMenuShareTimeline(share_config); //分享给好友
                     wx.onMenuShareAppMessage(share_config); //分享到朋友圈
-                    wx.updateAppMessageShareData(share_config); //分享给手机QQ
-                    wx.updateTimelineShareData(share_config); //分享给手机QQ
+                    // wx.updateAppMessageShareData(share_config); //分享给手机QQ
+                    // wx.updateTimelineShareData(share_config); //分享给手机QQ
                 });
                 resolve(res);
             })
