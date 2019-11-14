@@ -3,23 +3,26 @@ import wx from "weixin-js-sdk";
 import { Toast } from "vant";
 
 export default function WxShare(shareObj) {
+    console.log(shareObj);
     return new Promise((resolve, reject) => {
         let url = encodeURIComponent(window.location.href.split("#")[0]);
-        api.getTicket({
+        getTicket({
             url: url
         })
             .then(res => {
+
+                console.log('appId'+res.data.appId);
                 wx.config({
                     debug: false,
-                    appId: res.appId,
-                    timestamp: res.timestamp,
-                    nonceStr: res.nonceStr,
-                    signature: res.signature,
+                    appId: res.data.appId,
+                    timestamp: res.data.timestamp,
+                    nonceStr: res.data.nonceStr,
+                    signature: res.data.signature,
                     jsApiList: [
-                        "onMenuShareAppMessage",
-                        "onMenuShareTimeline",
-                        "onMenuShareQQ",
-                        "onMenuShareQZone"
+                        'onMenuShareTimeline',
+                        'onMenuShareAppMessage',
+                        'updateAppMessageShareData',
+                        'updateTimelineShareData'
                     ]
                 });
                 let share_config = {

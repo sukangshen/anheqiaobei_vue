@@ -14,8 +14,8 @@ export default {
                 title:"1232"
             }).then(()=>{
                 console.log(1)
-            }).catch(()=>{
-                console.log(2)
+            }).catch((err)=>{
+                console.log('----'+err)
             })
         }
     }

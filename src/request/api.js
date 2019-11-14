@@ -65,9 +65,10 @@ export function getTagList() {
   })
 }
 
-export function getTicket() {
+export function getTicket(data) {
+    console.log('----请求'+data);
     return request({
-        url: '/api/wechat/getTicket',
+        url: '/api/wechat/getTicket?url='+data,
         method: 'get',
         data:{}
     })
