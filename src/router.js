@@ -36,15 +36,20 @@ export default new Router({
       ]
     },
     {
-      path: '/detailed',
-      name: 'detailed',
-      component: () => import('@/views/Detailed.vue')
-    },
+          path: '/detailed',
+          name: 'detailed',
+          component: () => import('@/views/Detailed.vue')
+      },
+      {
+          path: '/demo',
+          name: 'demo',
+          component: () => import('@/views/demo.vue')
+      },
     {
       path: '/myRelease',
       name: 'myRelease',
       component: () => import('@/views/MyRelease.vue')
     },
-    
+
   ]
 })

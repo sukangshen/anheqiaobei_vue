@@ -65,6 +65,13 @@ export function getTagList() {
   })
 }
 
+export function getTicket() {
+    return request({
+        url: '/api/wechat/getTicket',
+        method: 'get',
+        data:{}
+    })
+}
 
 
 
