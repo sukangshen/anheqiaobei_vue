@@ -13,7 +13,7 @@ export default {
                 desc:"安和桥北",
                 title:"安和桥北",
                 imgUrl:'http://cdn.anheqiaobei.com/c635ee9b4fdad4cb333aba5c7279a046.jpeg',
-                link:window.location.href
+                link:'http://love.anheqiaobei.com/#/about'
             }).then(()=>{
                 console.log(1)
             }).catch((err)=>{

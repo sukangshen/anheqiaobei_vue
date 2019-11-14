@@ -21,8 +21,8 @@ export default function WxShare(shareObj) {
                     jsApiList: [
                         'onMenuShareTimeline',
                         'onMenuShareAppMessage',
-                        'updateAppMessageShareData',
-                        'updateTimelineShareData'
+                        // 'updateAppMessageShareData',
+                        // 'updateTimelineShareData'
                     ]
                 });
                 let share_config = {
