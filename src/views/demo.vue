@@ -8,7 +8,7 @@ import WxShare from "@/tools/wechatShare.js";
 // import wx from "weixin-js-sdk";
 export default {
     methods: {
-        sub() {
+        share() {
             WxShare({
                 desc:"123213",
                 title:"1232"
