@@ -90,6 +90,7 @@ export default {
       // 如果存在什么也不做，直接用token就行
         alert('缓存'+sessionStorage.token);
     }else if(location.href.includes('token')){
+        alert('返回TOKEN'+this.$route.query.token);
         alert('返回'+JSON.stringify(this.$route.query));
       sessionStorage.token=this.$route.query.token;
     }else{
