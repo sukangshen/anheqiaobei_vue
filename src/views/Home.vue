@@ -96,7 +96,7 @@ export default {
         // var en = escape('http://love.anheqiaobei.com/#/home');
         var en = 'http://love.anheqiaobei.com';
         alert('请求'+en);
-      location.href='http://api.love.anheqiaobei.com/api/wechat/auth?target_url='+en;
+      window.location.href='http://api.love.anheqiaobei.com/api/wechat/auth?target_url='+en;
     }
 
 
