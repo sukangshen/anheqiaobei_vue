@@ -8,7 +8,9 @@ const service = axios.create({
 // request interceptor
 service.interceptors.request.use(
   config => {
-    config.headers={'Accept':'application/json','Authorization':'Bearer'+sessionStorage.token}
+      const token = sessionStorage.token ? sessionStorage.token : '';
+      // config.headers={'Accept':'application/json','Authorization':'Bearer'+sessionStorage.token}
+      config.headers={'Accept':'application/json','Authorization':'Bearer'+token}
     // config.headers['X-Token'] = '';
     return config
   },
@@ -19,7 +21,7 @@ service.interceptors.request.use(
 )
 
 // response interceptor
-service.interceptors.response.use(    
+service.interceptors.response.use(
   response => {
     const res = response.data;
     if (res.code != 200) {
