@@ -97,9 +97,14 @@ export default {
     }else{
         var en = escape('http://love.anheqiaobei.com/#/about');
         // var en = 'http://love.anheqiaobei.com';
-        alert('请求'+en);
-      window.location.href='http://api.love.anheqiaobei.com/api/wechat/auth?target_url='+en;
+        var url = 'http://api.love.anheqiaobei.com/api/wechat/auth?target_url='+en;
+        alert('请求'+url);
+      window.location.href=url;
     }
+
+
+
+
 
 
     var that = this;
