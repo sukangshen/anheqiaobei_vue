@@ -95,7 +95,7 @@ export default {
         alert('返回'+JSON.stringify(this.$route.query));
       sessionStorage.token=this.$route.query.token;
     }else{
-        var en = escape('http://love.anheqiaobei.com/#/home');
+        var en = escape('http://love.anheqiaobei.com/#/about');
         // var en = 'http://love.anheqiaobei.com';
         alert('请求'+en);
       window.location.href='http://api.love.anheqiaobei.com/api/wechat/auth?target_url='+en;
