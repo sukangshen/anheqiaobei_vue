@@ -99,7 +99,7 @@ export default {
         // var en = 'http://love.anheqiaobei.com';
         var url = 'http://api.love.anheqiaobei.com/api/wechat/auth?target_url='+en;
         alert('请求'+url);
-      // window.location.href=url;
+      return window.location.href=url;
     }
 
 
