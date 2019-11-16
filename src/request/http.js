@@ -32,10 +32,10 @@ service.interceptors.response.use(
     }
   },
   error => {
-      alert('错误一个');
-      alert('打印错误'.JSON.stringify(error));
-    console.log('err' + error) // for debug
-    alert(error.message);
+    //   alert('错误一个');
+    //   alert('打印错误'.JSON.stringify(error));
+    // console.log('err' + error) // for debug
+    // alert(error.message);
     // Message({
     //   message: error.message,
     //   type: 'error',
