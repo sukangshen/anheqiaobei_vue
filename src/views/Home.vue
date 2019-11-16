@@ -85,11 +85,12 @@ export default {
 
 
 
-
+    console.log("sessionStorage:" + sessionStorage)
     if(sessionStorage.token){
       // 如果存在什么也不做，直接用token就行
         alert('缓存'+sessionStorage.token);
     }else if(location.href.includes('token')){
+        console.log('sessionStorage::' + sessionStorage)
         alert('返回111'+location.href);
         alert('返回TOKEN'+this.$route.query.token);
         alert('返回'+JSON.stringify(this.$route.query));
@@ -100,6 +101,7 @@ export default {
         var url = 'http://api.love.anheqiaobei.com/api/wechat/auth?target_url='+en;
         alert('请求'+url);
       return window.location.href=url;
+
     }
 
 
