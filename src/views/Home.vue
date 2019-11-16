@@ -94,13 +94,12 @@ export default {
         alert('返回TOKEN'+this.$route.query.token);
         alert('返回'+JSON.stringify(this.$route.query));
         sessionStorage.token = this.$route.query.token;
-        alert('sessionStorage:' + sessionStorage);
     }else{
         var en = escape('http://love.anheqiaobei.com/#/about');
         // var en = 'http://love.anheqiaobei.com';
         var url = 'http://api.love.anheqiaobei.com/api/wechat/auth?target_url='+en;
         alert('请求'+url);
-      return window.location.href=url;
+       window.location.href=url;
 
     }
 
