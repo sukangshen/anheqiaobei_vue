@@ -87,7 +87,8 @@ export default {
       var url = 'http://api.love.anheqiaobei.com/api/wechat/auth?target_url='+en;
       alert('请求'+url);
       window.location.href=url;
-      alert('请求后');
+      return;
+      // alert('请求后');
     // console.log("sessionStorage:" + sessionStorage)
     // if(sessionStorage.token){
     //   // 如果存在什么也不做，直接用token就行
