@@ -1,11 +1,9 @@
 <template>
   <div class="about">
     <div class="swiper">
-      <!-- <span></span> -->
       <van-swipe :autoplay="2000" loop indicator-color="#1989fa !important">
-        <van-swipe-item v-for="(item,i) in slides" :key="i"><img :src="item.img_url" alt=""></van-swipe-item>
+        <van-swipe-item v-for="(item,i) in slides" :key="i"><img :src="item.img_url" alt="" @click="goTargetUrl(item.target)"></van-swipe-item>
       </van-swipe>
-      <!-- <span></span> -->
     </div>
 
     <div class="top">
@@ -29,7 +27,7 @@
           />
           <div class="detail">
             <img :src="item.headimgurl" alt />
-            <span style="float:left">善良的</span>
+            <span style="float:left">{{item.nickname}}</span>
             <span style="float:right">{{item.age}}岁/{{item.address_live_name.split('-')[0]}}</span>
           </div>
         </li>
@@ -63,6 +61,9 @@ export default {
     }
   },
   methods: {
+    goTargetUrl(url){
+      location.href=url;
+    },
     load() {
       if (!this.msgBol) {
         return;
@@ -181,7 +182,9 @@ export default {
   color: #333;
 }
 .cont {
-  margin-bottom: 1rem;
+  // margin-bottom: 1rem;
+  width: 6.2rem;
+  margin: 0 auto 1rem;
   p {
     font-size: 0.2rem;
     text-align: center;
@@ -192,7 +195,7 @@ export default {
     justify-content: space-between;
     flex-wrap: wrap;
     li {
-      width: 3.19rem;
+      width: 3.08rem;
       height: 4.38rem;
       overflow: hidden;
        img {
@@ -217,7 +220,7 @@ export default {
   overflow: hidden;
   text-overflow: ellipsis;
   white-space: nowrap;
-  max-width: 1rem;
+  max-width: 1.2rem;
 }
 .cont ul > li > div > img {
   width: 0.4rem;
