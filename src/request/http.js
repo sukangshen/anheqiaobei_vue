@@ -33,7 +33,7 @@ service.interceptors.response.use(
   error => {
     // alert(error);
     // console.log('err' + error) // for debug
-    alert(error.message);
+    // alert(error.message);
     // Message({
     //   message: error.message,
     //   type: 'error',
