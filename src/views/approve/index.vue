@@ -86,6 +86,9 @@ export default {
                         display: block;
                         margin: 0 auto 0.2rem;
                     }
+                    span{
+                        white-space: nowrap;
+                    }
                 }
                 .right{
                     width: 1.7rem;
