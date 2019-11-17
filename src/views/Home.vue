@@ -95,16 +95,11 @@ export default {
         var en = escape('http://love.anheqiaobei.com/#/about');
         // var en = 'http://love.anheqiaobei.com';
         var url = 'http://api.love.anheqiaobei.com/api/wechat/auth?target_url='+en;
-        alert('请求'+url);
+        // alert('请求'+url);
         window.location.href=url;
-        alert('继续11');
+        // alert('继续11');
     }
-
-      alert('继续22');
-
-
-
-
+    alert('继续22');
     var that = this;
     let win = window.innerHeight;
     window.addEventListener(
