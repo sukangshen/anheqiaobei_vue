@@ -27,15 +27,15 @@
       </div>
     </div>
     <div class="easy">
-      <span>个人介绍：</span>
+      <span><a style="display:inline-block;width:3px;height:0.3rem;background:#2b4cfd;vertical-align: top;margin-top:0.03rem;border-radius:5px;margin-right:5px"></a>个人介绍：</span>
       <div>{{data.self_intro}}</div>
     </div>
     <div class="easy">
-      <span>择偶标准：</span>
+      <span><a style="display:inline-block;width:3px;height:0.3rem;background:#2b4cfd;vertical-align: top;margin-top:0.03rem;border-radius:5px;margin-right:5px"></a>择偶标准：</span>
       <div>{{data.friend_condition}}</div>
     </div>
     <div class="easy">
-      <span>家庭背景：</span>
+      <span><a style="display:inline-block;width:3px;height:0.3rem;background:#2b4cfd;vertical-align: top;margin-top:0.03rem;border-radius:5px;margin-right:5px"></a>家庭背景：</span>
       <div>{{data.family_info}}</div>
     </div>
     <div class="easy">
@@ -124,10 +124,10 @@ export default {
 }
 .easy > span {
   display: block;
-  border-left: 3px solid #2b4cfd;
+  // border-left: 3px solid #2b4cfd;
   font-size: 0.24rem;
   color: #333;
-  padding-left: 0.1rem;
+  // padding-left: 0.1rem;
   margin-left: 0.25rem;
   margin-bottom: 0.05rem;
   font-weight: 550;
