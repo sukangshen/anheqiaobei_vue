@@ -6,6 +6,7 @@ import './static/js/public640.js'
 import Vant from 'vant';
 import 'vant/lib/index.css';
 import moment from 'moment'
+import VConsole from 'vconsole'
 Vue.use(Vant);
 
 Vue.config.productionTip = false
@@ -16,9 +17,7 @@ new Vue({
 }).$mount('#app')
 // console.log(moment().subtract(10, "days").format("YYYY-MM-DD"))
 
-import VConsole from 'vconsole'
-
-new VConsole()
+// new VConsole()
 
 // router.beforeEach((to, from, next) => {
 //   console.log(to);

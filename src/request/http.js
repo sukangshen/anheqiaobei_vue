@@ -23,16 +23,15 @@ service.interceptors.response.use(
   response => {
     const res = response.data;
     if (res.code != 200) {
-        alert('不等于200');
+        // alert('不等于200');
       alert(res.message);
       return res;
     } else {
-        alert('等于200');
       return res
     }
   },
   error => {
-    alert('打印错误'.JSON.stringify(error));
+    alert(error);
     // console.log('err' + error) // for debug
     alert(error.message);
     // Message({

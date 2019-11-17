@@ -72,6 +72,30 @@ export function getTicket(data) {
         data:{}
     })
 }
+// 用户身份提交认证
+export function userCard(data) {
+  return request({
+      url: '/api/wechat/identityAuth',
+      method: 'post',
+      data:data
+  })
+}
+// 获取认证信息
+export function approve(data) {
+  return request({
+      url: '/api/wechat/myAuthInfo',
+      method: 'get',
+      data:{}
+  })
+}
+// 工作认证
+export function workCard(data) {
+  return request({
+      url: '/api/wechat/workAuth',
+      method: 'post',
+      data:data
+  })
+}
 
 
 

@@ -12,6 +12,10 @@
           <img src="@/assets/right.png" alt />
         </li>
         <li>
+          <span>我的认证</span>
+          <img src="@/assets/right.png" alt />
+        </li>
+        <li>
           <span>关于我们</span>
           <img src="@/assets/right.png" alt />
         </li>

@@ -50,6 +50,25 @@ export default new Router({
       name: 'myRelease',
       component: () => import('@/views/MyRelease.vue')
     },
-
+    {
+      path: '/approve',
+      name: 'approve',
+      component: () => import('@/views/approve/index.vue')
+    },
+    {
+      path: '/user',
+      name: 'user',
+      component: () => import('@/views/approve/user.vue')
+    },
+    {
+      path: '/work',
+      name: 'work',
+      component: () => import('@/views/approve/work.vue')
+    },
+    {
+      path: '/workDetail',
+      name: 'workDetail',
+      component: () => import('@/views/approve/workDetail.vue')
+    },
   ]
 })
