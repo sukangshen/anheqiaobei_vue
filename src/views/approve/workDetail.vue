@@ -144,10 +144,10 @@ export default {
         color: #fff;
     }
 </style>
-<style >
+<style scoped>
     .workDetail /deep/ .van-uploader__upload{
-        width: 5.5rem !important;
-        height: 2.8rem !important;
+        width: 5.5rem;
+        height: 2.8rem;
         opacity: 0;
     }
     .workDetail /deep/ .van-uploader__input{
