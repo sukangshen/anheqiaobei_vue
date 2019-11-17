@@ -22,12 +22,14 @@
           <p>上传身份证件</p>
           <div class="card">
               <div>
-                  <img :src="img_src1" alt="">
-                  <van-uploader :after-read="afterRead" style="position: absolute;top: 0;left: 0;"/>
+                  <img src="@/static/img/jia.png" alt="" class="addImg">
+                  <img :src="img_src1" alt="" class="loadImg">
+                  <van-uploader :after-read="afterRead" style="position: absolute;top: 0;left: 0;z-index:9"/>
               </div>
               <div>
-                  <img :src="img_src2" alt="">
-                  <van-uploader :after-read="afterRead1" style="position: absolute;top: 0;left: 0;"/>
+                  <img src="@/static/img/jia.png" alt="" class="addImg">
+                  <img :src="img_src2" alt="" class="loadImg">
+                  <van-uploader :after-read="afterRead1" style="position: absolute;top: 0;left: 0;z-index:9"/>
               </div>
           </div>
           <div class="cardTxt">
@@ -75,6 +77,18 @@ export default {
             });
         },
         submit(){
+            if(this.user_name==''){
+                Toast('请填写您的真实姓名');
+                return;
+            }
+            if(this.id_number==''){
+                Toast('请填写您的身份证号');
+                return;
+            }
+            if(this.img1==''||this.img2==''){
+                Toast('请上传您的身份证正反面');
+                return;
+            }
             userCard({
                 user_name:this.user_name,
                 id_number:this.id_number,
@@ -170,9 +184,19 @@ export default {
                 border-radius: 0.1rem;
                 overflow: hidden;
                 position: relative;
-                img{
+                display: flex;
+                align-items: center;
+                justify-content: center;
+                .loadImg{
                     width: 100%;
                     height: 100%;
+                    position: absolute;
+                    top: 0;
+                    left: 0;
+                }
+                .addImg{
+                    width: 0.8rem;
+                    height: 0.8rem;
                 }
             }
         }
@@ -201,7 +225,12 @@ export default {
 </style>
 <style scoped>
     .card /deep/ .van-uploader__upload{
-        width:100%;
+        width:2.8rem;
+        height:1.8rem;
+        opacity: 0;
+    }
+    .card /deep/ .van-uploader__input{
+        width: 2.8rem;
         height:1.8rem;
         opacity: 0;
     }

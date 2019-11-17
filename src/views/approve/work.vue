@@ -5,16 +5,16 @@
           <span>已经汇聚BAT、华为、平安科技、中国移动等名企数十万用户</span>
       </div>
       <ul>
-          <li @click="$router.push('workDetail')">
+          <li @click="$router.push({path:'workDetail',query:{type:1,msg:'支付宝社保截图'}})">
               <span>支付宝社保截图</span>
           </li>
-          <li @click="$router.push('workDetail')">
+          <li @click="$router.push({path:'workDetail',query:{type:1,msg:'钉钉或企业微信认证名片'}})">
               <span>钉钉或企业微信认证名片</span>
           </li>
-          <li @click="$router.push('workDetail')">
+          <li @click="$router.push({path:'workDetail',query:{type:1,msg:'工牌/在职证明/工作合同'}})">
               <span>工牌/在职证明/工作合同</span>
           </li>
-          <li @click="$router.push('workDetail')">
+          <li @click="$router.push({path:'workDetail',query:{type:2,msg:'在校学生'}})">
               <span>在校学生</span>
           </li>
       </ul>

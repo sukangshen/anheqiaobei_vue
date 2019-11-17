@@ -3,7 +3,7 @@
         <div class="userMsg">
           <div class="workLeft">
               <p>已经汇聚BAT、华为、平安科技、中国移动等名企数十万用户</p>
-              <span>认证方式: 在校学生<van-icon name="edit" @click="$router.go(-1)"/></span>
+              <span>认证方式: {{msg}}<van-icon name="edit" @click="$router.go(-1)"/></span>
           </div>
           <div class="workRight">
               <img src="@/static/img/workWhite.png" alt="">
@@ -11,10 +11,10 @@
           </div>
       </div>
       <div style="width:100%;height:0.18rem;background:#f0f0f0"></div>
-      <van-divider>在校学生</van-divider>
+      <van-divider>{{msg}}</van-divider>
       <div class="workBtm">
           <span>
-              请上传学生证照片
+              {{type==1?'请上传带姓名及公司名称的图片':'请上传学生证照片'}}
           </span>
           <img :src="img_src" alt="">
           <van-uploader :after-read="afterRead" style="position: absolute;top: 0;left: 0;opacity: 0;z-index:9;"/>
@@ -32,7 +32,9 @@ export default {
     data(){
         return{
             img_src:'',
-            img:''
+            img:'',
+            type:1,
+            msg:''
         }
     },
     methods:{
@@ -46,6 +48,9 @@ export default {
             });
         },
         submit(){
+            if(this.img==''){
+                Toast('请上传您的证件图片');
+            }
             workCard({image:this.img}).then(res=>{
                 if(res.status){
                     Toast('提交成功，请耐心等待审核');
@@ -57,7 +62,9 @@ export default {
         }
     },
     mounted(){
-
+        // alert(this.$route.query.type);
+        this.type=this.$route.query.type;
+        this.msg=this.$route.query.msg
     }
 }
 </script>
