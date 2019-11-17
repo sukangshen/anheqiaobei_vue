@@ -2,7 +2,7 @@
   <div class="release">
     <div class="top">
       <div class="loadTit">
-        <span>基本资料</span>
+        <span><a class="titBorder" style="margin-top:0.24rem;"></a>基本资料</span>
       </div>
       <div class="form">
         <ul>
@@ -185,7 +185,7 @@
       </van-steps>-->
 
       <div class="loadTit">
-        <span>上传照片</span>
+        <span><a class="titBorder" style="margin-top:0.24rem;"></a>上传照片</span>
         <a>最多可上传10张图片</a>
       </div>
       <van-uploader
@@ -195,7 +195,7 @@
         :before-delete="beforeDelete1"
       />
       <div class="loadTit">
-        <span>上传微信二维码</span>
+        <span><a class="titBorder" style="margin-top:0.24rem;"></a>上传微信二维码</span>
       </div>
       <van-uploader
         v-model="preview2"
@@ -582,13 +582,7 @@ export default {
   font-weight: 500;
   line-height: 0.8rem;
 }
-.loadTit > span::before {
-  content: "|";
-  color: #2b4cfd;
-  font-size: 0.3rem;
-  font-weight: 600;
-  padding-right: 0.05rem;
-}
+
 .loadTit > a {
   font-size: 0.22rem;
   color: #999;

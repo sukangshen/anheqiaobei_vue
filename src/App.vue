@@ -30,4 +30,7 @@ html,body{
 .van-swipe__indicator{
   background: #333 !important;
 }
+.titBorder{
+  display:inline-block;width:3px;height:0.3rem;background:#2b4cfd;vertical-align: top;margin-top:0.03rem;border-radius:5px;margin-right:5px
+}
 </style>

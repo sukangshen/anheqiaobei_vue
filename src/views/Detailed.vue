@@ -27,21 +27,21 @@
       </div>
     </div>
     <div class="easy">
-      <span><a style="display:inline-block;width:3px;height:0.3rem;background:#2b4cfd;vertical-align: top;margin-top:0.03rem;border-radius:5px;margin-right:5px"></a>个人介绍：</span>
+      <span><a class="titBorder"></a>个人介绍：</span>
       <div>{{data.self_intro}}</div>
     </div>
     <div class="easy">
-      <span><a style="display:inline-block;width:3px;height:0.3rem;background:#2b4cfd;vertical-align: top;margin-top:0.03rem;border-radius:5px;margin-right:5px"></a>择偶标准：</span>
+      <span><a class="titBorder"></a>择偶标准：</span>
       <div>{{data.friend_condition}}</div>
     </div>
     <div class="easy">
-      <span><a style="display:inline-block;width:3px;height:0.3rem;background:#2b4cfd;vertical-align: top;margin-top:0.03rem;border-radius:5px;margin-right:5px"></a>家庭背景：</span>
+      <span><a class="titBorder"></a>家庭背景：</span>
       <div>{{data.family_info}}</div>
     </div>
     <div class="easy">
-      <span>个人标签：</span>
+      <span><a class="titBorder"></a>个人标签：</span>
       <div>
-        <van-tag round v-for="(item, key) in data.tag_list" :key="key">{{ item }}</van-tag>
+        <van-tag style="background:#2b4cfd;margin-bottom:5px" size="medium" round v-for="(item, key) in data.tag_list" :key="key" type="primary">{{ item }}</van-tag>
       </div>
     </div>
     <div class="easy">
