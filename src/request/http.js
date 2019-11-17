@@ -31,7 +31,7 @@ service.interceptors.response.use(
     }
   },
   error => {
-    alert(error);
+    // alert(error);
     // console.log('err' + error) // for debug
     alert(error.message);
     // Message({
