@@ -11,7 +11,7 @@
           <span>我的发布</span>
           <img src="@/assets/right.png" alt />
         </li>
-        <li>
+        <li @click="$router.push('/approve')">
           <span>我的认证</span>
           <img src="@/assets/right.png" alt />
         </li>
