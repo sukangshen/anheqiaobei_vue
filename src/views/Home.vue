@@ -106,7 +106,7 @@ export default {
     window.addEventListener(
       "resize",
       function() {
-        if (win - window.innerHeight>100) {
+        if (win - window.innerHeight>140) {
           that.btmBol = false;
           win = window.innerHeight;
         } else {
