@@ -82,13 +82,21 @@
               <div v-else>{{address_live_name}}</div>
             </div>
           </li>
+          <li>
+            <span>
+              <img src="@/static/img/job.png" alt />工作
+            </span>
+            <div>
+              <input v-model="userName" placeholder="请输入工作" />
+            </div>
+          </li>
           <li :style="{height:tagNameList.lenght==1?'0.8rem;':'auto'}">
             <span>
-              <img src="@/static/img/height.png" alt />我的标签
+              <img src="@/static/img/myTag.png" alt />我的标签
             </span>
-              <div @click="tagBol=true;">
+              <div @click="tagBol=true;" class="newPageBtn">
                 <div style="color:#999">
-                  <van-icon name="records" />
+                  <van-icon name="edit" />
                 </div>
                 <!-- <div v-else style="line-height:0.65rem">
                   <span v-for="(item,i) in tagNameList" :key="i">{{item}}</span>
@@ -102,42 +110,58 @@
                 </div>
               </div>
           </li>
-          <li style="height:1.8rem;padding-bottom:0.2rem">
+          <li :style="{height:self_intro.lenght != 0?'auto;':'1.8rem'}">
             <span>
               <img src="@/static/img/introduce.png" alt />个人介绍
             </span>
-            <div>
-              <textarea rows="3" v-model="self_intro" placeholder="介绍自己有趣的灵魂吧" maxlength="200"></textarea>
-            </div>
-            <a>{{self_intro.length}}/200</a>
+            <div @click="selfInfo=true;" class="newPageBtn">
+                <div style="color:#999">
+                  <van-icon name="edit" />
+                </div>
+              </div>
           </li>
-          <li style="height:1.8rem">
+          <li :style="{height:'auto'}">
+              <div @click="selfInfo=true;">
+                <div style="line-height:0.65rem">
+                  <p v-if="self_intro != ''">{{ self_intro }}</p>
+                </div>
+              </div>
+          </li>
+          
+          <li :style="{height:friend_condition.lenght != 0?'auto;':'1.8rem'}">
             <span>
               <img src="@/static/img/require.png" alt />择偶标准
             </span>
-            <div>
-              <textarea
-                rows="3"
-                v-model="friend_condition"
-                placeholder="对另一半有什么要求呢"
-                maxlength="200"
-              ></textarea>
-            </div>
-            <a>{{friend_condition.length}}/200</a>
+            <div @click="friendStandard=true;" class="newPageBtn">
+                <div style="color:#999">
+                  <van-icon name="edit" />
+                </div>
+              </div>
           </li>
-          <li style="height:1.8rem">
+          <li :style="{height:'auto'}">
+              <div @click="friendStandard=true;">
+                <div style="line-height:0.65rem">
+                  <p v-if="friend_condition != ''">{{ friend_condition }}</p>
+                </div>
+              </div>
+          </li>
+
+          <li :style="{height:friend_condition.lenght != 0?'auto;':'1.8rem'}">
             <span>
-              <img src="@/static/img/require.png" alt />家庭背景
+              <img src="@/static/img/familyBg.png" alt />家庭背景
             </span>
-            <div>
-              <textarea
-                rows="3"
-                v-model="family_info"
-                placeholder="简单介绍下家庭情况吧"
-                maxlength="200"
-              ></textarea>
-            </div>
-            <a>{{family_info.length}}/200</a>
+            <div @click="familyBg=true;" class="newPageBtn" >
+                <div style="color:#999">
+                  <van-icon name="edit" />
+                </div>
+              </div>
+          </li>
+          <li :style="{height:'auto'}">
+              <div @click="familyBg=true;">
+                <div style="line-height:0.65rem">
+                  <p v-if="family_info != ''">{{ family_info }}</p>
+                </div>
+              </div>
           </li>
         </ul>
       </div>
@@ -265,6 +289,73 @@
         保 存
       </p>
     </div>
+    <div class="tags" v-show="selfInfo">
+      <span>个人介绍</span>
+      <div class="hobbyWarp">
+        <textarea
+          rows="3"
+          v-model="self_intro"
+          placeholder="业余喜欢做什么，比如喜欢看什么样的书、喜欢去什么地方旅游等"
+          maxlength="500"
+        ></textarea>
+        <a>{{self_intro.length}}/500</a>
+        
+        <!-- 图片上传绑定值暂未给 -->
+        <van-uploader
+          v-model="hobbyImg"
+          :max-count="10"
+          :before-read="beforeUploadSelfIntro"
+          :before-delete="beforeDeleteSelfIntro"
+        />
+      </div>
+      <p class="btm" @click="handleSelfIntro">
+        保 存
+      </p>
+    </div>
+
+    <div class="tags" v-show="friendStandard">
+      <span>择偶标准</span>
+      <div class="hobbyWarp">
+        <textarea
+          rows="3"
+          v-model="friend_condition"
+          placeholder="择偶标准"
+          maxlength="500"
+        ></textarea>
+        <a>{{friend_condition.length}}/500</a>
+        <van-uploader
+          v-model="hobbyImg"
+          :max-count="10"
+          :before-read="beforeUploadCondition"
+          :before-delete="beforeDeleteCondition"
+        />
+      </div>
+      <p class="btm" @click="handleSaveFriend">
+        保 存
+      </p>
+    </div>
+
+    <div class="tags" v-show="familyBg">
+      <span>家庭背景</span>
+      <div class="hobbyWarp">
+        <textarea
+          rows="3"
+          v-model="family_info"
+          placeholder="介绍下父母职业，比如普通家庭、经商家庭、高知家庭等"
+          maxlength="500"
+        ></textarea>
+        <a>{{family_info.length}}/500</a>
+        <van-uploader
+          v-model="hobbyImg"
+          :max-count="10"
+          :before-read="beforeUploadFamily"
+          :before-delete="beforeDeleteFamily"
+        />
+      </div>
+      <p class="btm" @click="handleSaveFamilyBg">
+        保 存
+      </p>
+    </div>
   </div>
 </template>
 
@@ -279,6 +370,9 @@ export default {
   data() {
     return {
       tagBol:false,
+      selfInfo: false,
+      familyBg: false,
+      friendStandard: false,
       genderShow:false,
       genderList: ['男','女'],
       weightShow: false,
@@ -320,7 +414,9 @@ export default {
       areaList: areas,
       tagList:[],
       tagIdList:[],
-      tagNameList:[]
+      tagNameList:[],
+      hobbyImg: [],
+      hobbyImgList: [],
     };
   },
   methods: {
@@ -428,6 +524,59 @@ export default {
         return false;
       }
       // }
+    },
+    beforeDeleteHobby(files, index) {
+      this.hobbyImgList.splice(index.index, 1);
+      return true;
+    },
+    beforeUploadHobby(files) {
+      if (
+        files.type == "image/jpeg" ||
+        files.type == "image/jpg" ||
+        files.type == "image/png" ||
+        files.type == "image/gif"
+      ) {
+        if (files.size / 1024 / 1024 > 3) {
+          Toast("上传图片大小超过3M");
+          return false;
+        } else {
+          var formData = new FormData();
+          formData.append("image", files);
+          imgUpload(formData).then(res => {
+            this.hobbyImgList.push(res.data.img_url);
+          });
+          return true;
+        }
+      } else {
+        Toast("上传图片格式有误");
+        return false;
+      }
+      // }
+    },
+    // 个人介绍
+    handleSelfIntro() {
+      this.selfInfo=false;
+    },
+    // 个人介绍图片上传
+    beforeUploadSelfIntro() {},
+    beforeDeleteSelfIntro() {},
+    // 家庭背景
+    handleSaveFamilyBg() {
+      this.familyBg = false;
+    },
+    // 家庭背景图片上传
+    beforeUploadFamily() {},
+    beforeDeleteFamily() {},
+    // 择偶标准
+    handleSaveFriend() {
+      this.friendStandard = false;
+    },
+    // 择偶标准图片上传
+    beforeUploadCondition() {
+      
+    },
+    beforeDeleteCondition() {
+
     },
     submit() {
       if (this.userName == "") {
@@ -607,6 +756,10 @@ export default {
         background: #fff;
         color: #aaa;
       }
+      .newPageBtn {
+        position: absolute;
+        right: .1rem;
+      }
       div {
         span{
           display: inline-block;
@@ -761,4 +914,26 @@ export default {
   background: #2b4cfd;
   color: #fff;
 }
+.hobbyWarp {
+  position: relative;
+  textarea {
+    width: 100%;
+    height: 80%;
+    line-height: 0.5rem;  
+    box-sizing: border-box;
+    border: 1px dashed #c7cfff;
+    padding: .1rem;
+    margin: .2rem 0;
+  }
+  a {
+    display: inline-block;
+    position: absolute;
+    bottom: 2rem;
+    right: 0.3rem;
+    line-height: 0;
+    background: #fff;
+    color: #aaa;
+  }
+}
+
 </style>
