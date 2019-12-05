@@ -69,35 +69,35 @@
 <script>
 import { detail } from "@/request/api.js";
 export default {
-  name: "detailed",
-  data() {
-    return {
-      preview: false,
-      index: 0,
-      images: ["https://img.yzcdn.cn/2.jpg", "https://img.yzcdn.cn/2.jpg"],
-      data: {},
-      show: false,
-      wechat_img: ["http://cdn.anheqiaobei.com/11"]
-    };
-  },
-  methods: {
-    onChange(index) {
-      this.index = index;
+    name: "detailed",
+    data() {
+        return {
+            preview: false,
+            index: 0,
+            images: ["https://img.yzcdn.cn/2.jpg", "https://img.yzcdn.cn/2.jpg"],
+            data: {},
+            show: false,
+            wechat_img: ["http://cdn.anheqiaobei.com/11"]
+        };
     },
-    goPreview() {
-      this.preview = true;
+    methods: {
+        onChange(index) {
+            this.index = index;
+        },
+        goPreview() {
+            this.preview = true;
+        },
+        showPopup() {
+            this.show = true;
+        }
     },
-    showPopup() {
-      this.show = true;
+    mounted() {
+        detail(this.$route.query.id).then(res => {
+            console.log(res.data);
+            this.data = res.data;
+            this.images = res.data.self_img;
+        });
     }
-  },
-  mounted() {
-    detail(this.$route.query.id).then(res => {
-      console.log(res.data);
-      this.data = res.data;
-      this.images = res.data.self_img;
-    });
-  }
 };
 </script>
 <style lang='scss' scoped>

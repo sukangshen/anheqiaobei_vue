@@ -16,108 +16,107 @@
 </template>
 
 <script>
-import { fetchList } from "@/request/api.js";
+// import { fetchList } from "@/request/api.js";
 export default {
-  name: "home",
-  data() {
-    return {
-      btmBol:true,
-      active: "",
-      tabbars: [
-        {
-          name: "/about",
-          title: "发现",
-          normal: require("@/static/img/home.png"),
-          active: require("@/static/img/home_active.png"),
-        },
-        {
-          name: "/release",
-          title: "发布",
-          normal: require("@/static/img/release.png"),
-          active: require("@/static/img/release_active.png"),
-        },
-        {
-          name: "/information",
-          title: "我的",
-          normal: require("@/static/img/my.png"),
-          active: require("@/static/img/my_active.png"),
+    name: "home",
+    data() {
+        return {
+            btmBol:true,
+            active: "",
+            tabbars: [
+                {
+                    name: "/about",
+                    title: "发现",
+                    normal: require("@/static/img/home.png"),
+                    active: require("@/static/img/home_active.png"),
+                },
+                {
+                    name: "/release",
+                    title: "发布",
+                    normal: require("@/static/img/release.png"),
+                    active: require("@/static/img/release_active.png"),
+                },
+                {
+                    name: "/information",
+                    title: "我的",
+                    normal: require("@/static/img/my.png"),
+                    active: require("@/static/img/my_active.png"),
+                }
+            ]
+        };
+    },
+    watch:{
+        $route(to){
+            if(to.path=='/about'){
+                this.active=0;
+            }else if(to.path=='/release'){
+                this.active=1;
+            }else if(to.path=='/information'){
+                this.active=2;
+            }
         }
-      ]
-    };
-  },
-  watch:{
-    $route(to){
-      if(to.path=='/about'){
-        this.active=0;
-      }else if(to.path=='/release'){
-        this.active=1;
-      }else if(to.path=='/information'){
-        this.active=2;
-      }
-    }
-  },
-  methods: {
-    tab(i,path){
-      this.active=i;
-      sessionStorage.active=i;
-      this.$router.push(path);
-      scrollTo(0,0);
-    }
-  },
-  mounted() {
-    document.body.style.background='#fff';
-    if(location.href.includes('open_id')){
-      sessionStorage.openId=this.$route.query.open_id;
-    }
-    if(sessionStorage.active){
-      this.active=Number(sessionStorage.active);
-    }else{
-      this.active=0;
-    }
-    window.addEventListener("popstate", function(e) {
-      if(this.$route.path=='/about'){
-        this.active=0;
-      }else if(this.$route.path=='/release'){
-        this.active=1;
-      }else{
-        this.active=2;
-      }
-    }, false);
-
-    if(sessionStorage.token){
-      // 如果存在什么也不做，直接用token就行
+    },
+    methods: {
+        tab(i,path){
+            this.active=i;
+            sessionStorage.active=i;
+            this.$router.push(path);
+            scrollTo(0,0);
+        }
+    },
+    mounted() {
+        document.body.style.background='#fff';
+        if(location.href.includes('open_id')){
+            sessionStorage.openId=this.$route.query.open_id;
+        }
+        if(sessionStorage.active){
+            this.active=Number(sessionStorage.active);
+        }else{
+            this.active=0;
+        }
+        window.addEventListener("popstate", function(e) {
+            if(this.$route.path=='/about'){
+                this.active=0;
+            }else if(this.$route.path=='/release'){
+                this.active=1;
+            }else{
+                this.active=2;
+            }
+        }, false);
+        if(sessionStorage.token){
+            // 如果存在什么也不做，直接用token就行
         // alert('缓存'+sessionStorage.token);
-    }else if(location.href.includes('token')){
+        }else if(location.href.includes('token')){
         // alert('返回TOKEN'+this.$route.query.token);
         // alert('返回'+JSON.stringify(this.$route.query));
-        sessionStorage.token = this.$route.query.token;
+            sessionStorage.token = this.$route.query.token;
         // alert('sessionStorage:' + JSON.stringify(sessionStorage));
-    }else{
-        var en = escape('http://love.anheqiaobei.com/#/about');
-        // var en = 'http://love.anheqiaobei.com';
-        var url = 'http://api.love.anheqiaobei.com/api/wechat/auth?target_url='+en;
-        // alert('请求'+url);
-        window.location.href=url;
+        }else{
+            var en = escape('http://love.anheqiaobei.com/#/about');
+            // var en = 'http://love.anheqiaobei.com';
+            var url = 'http://api.love.anheqiaobei.com/api/wechat/auth?target_url='+en;
+            // alert('请求'+url);
+            window.location.href=url;
         // alert('继续11');
-    }
-    // alert('继续22');
-    var that = this;
-    let win = window.innerHeight;
-    window.addEventListener(
-      "resize",
-      function() {
-        if (win - window.innerHeight>140) {
-          that.btmBol = false;
-          win = window.innerHeight;
-        } else {
-          that.btmBol = true;
-          win = window.innerHeight;
         }
-        scrollTo(0,0);
-      },
-      false
-    );
-  }
+        // alert('继续22');
+        var that = this;
+        let win = window.innerHeight;
+        window.addEventListener(
+            "resize",
+            function() {
+                if (win - window.innerHeight>140) {
+                    that.btmBol = false;
+                    win = window.innerHeight;
+                } else {
+                    that.btmBol = true;
+                    win = window.innerHeight;
+                }
+                scrollTo(0,0);
+            },
+            false
+        );
+    }
 };
 </script>
 <style  scoped>

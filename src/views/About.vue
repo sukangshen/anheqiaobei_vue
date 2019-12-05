@@ -41,79 +41,79 @@
 import { fetchList, getList ,getSlide} from "@/request/api.js";
 import { Swipe, SwipeItem } from "vant";
 export default {
-  name: "about",
-  data() {
-    return {
-      loading: false,
-      active: 1,
-      selected: "/home",
-      list: [],
-      allLoaded: false,
-      msg: "上拉加载更多",
-      page: 1,
-      msgBol: true,
-      slides:[]
-    };
-  },
-  watch: {
-    selected(newVal) {
-      this.$router.push(newVal);
-    }
-  },
-  methods: {
-    goTargetUrl(url){
-      location.href=url;
+    name: "about",
+    data() {
+        return {
+            loading: false,
+            active: 1,
+            selected: "/home",
+            list: [],
+            allLoaded: false,
+            msg: "上拉加载更多",
+            page: 1,
+            msgBol: true,
+            slides:[]
+        };
     },
-    load() {
-      if (!this.msgBol) {
-        return;
-      }
-      this.page++;
-      //变量scrollTop是滚动条滚动时，距离顶部的距离
-      var scrollTop =
-        document.documentElement.scrollTop || document.body.scrollTop;
-      //变量windowHeight是可视区的高度
-      var windowHeight =
-        document.documentElement.clientHeight || document.body.clientHeight;
-      //变量scrollHeight是滚动条的总高度
-      var scrollHeight =
-        document.documentElement.scrollHeight || document.body.scrollHeight;
-      //滚动条到底部的条件
-      if (scrollTop + windowHeight >= scrollHeight) {
-        this.getList();
-      }
-    },
-    goDetail(id) {
-      this.$router.push({ path: "/detailed", query: { id: id } });
-    },
-    tab(i) {
-      this.active = i;
-      if (i == 1) {
-        document.querySelector(".top a").style.left = "0.06rem";
-      } else {
-        document.querySelector(".top a").style.left = "0.95rem";
-      }
-    },
-    getList() {
-      getList({ limit: "20", page: this.page }).then(res => {
-        if (res.status) {
-          var arr = this.list.concat(res.data.data);
-          this.list = arr;
-          if (this.list.length == res.data.total) {
-            this.msg = "暂无更多数据";
-            this.msgBol = false;
-          }
+    watch: {
+        selected(newVal) {
+            this.$router.push(newVal);
         }
-      });
+    },
+    methods: {
+        goTargetUrl(url){
+            location.href=url;
+        },
+        load() {
+            if (!this.msgBol) {
+                return;
+            }
+            this.page++;
+            //变量scrollTop是滚动条滚动时，距离顶部的距离
+            var scrollTop =
+        document.documentElement.scrollTop || document.body.scrollTop;
+            //变量windowHeight是可视区的高度
+            var windowHeight =
+        document.documentElement.clientHeight || document.body.clientHeight;
+            //变量scrollHeight是滚动条的总高度
+            var scrollHeight =
+        document.documentElement.scrollHeight || document.body.scrollHeight;
+            //滚动条到底部的条件
+            if (scrollTop + windowHeight >= scrollHeight) {
+                this.getList();
+            }
+        },
+        goDetail(id) {
+            this.$router.push({ path: "/detailed", query: { id: id } });
+        },
+        tab(i) {
+            this.active = i;
+            if (i == 1) {
+                document.querySelector(".top a").style.left = "0.06rem";
+            } else {
+                document.querySelector(".top a").style.left = "0.95rem";
+            }
+        },
+        getList() {
+            getList({ limit: "20", page: this.page }).then(res => {
+                if (res.status) {
+                    var arr = this.list.concat(res.data.data);
+                    this.list = arr;
+                    if (this.list.length == res.data.total) {
+                        this.msg = "暂无更多数据";
+                        this.msgBol = false;
+                    }
+                }
+            });
+        }
+    },
+    mounted() {
+        this.getList();
+        getSlide().then(res=>{
+            console.log(res.data);
+            this.slides=res.data;
+        })
     }
-  },
-  mounted() {
-    this.getList();
-    getSlide().then(res=>{
-      console.log(res.data);
-      this.slides=res.data;
-    })
-  }
 };
 </script>
 <style lang='scss' scoped>
