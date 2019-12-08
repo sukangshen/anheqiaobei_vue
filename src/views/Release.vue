@@ -2,7 +2,9 @@
   <div class="release">
     <div class="top">
       <div class="loadTit">
-        <span><a class="titBorder" style="margin-top:0.24rem;"></a>基本资料</span>
+        <span>
+          <a class="titBorder" style="margin-top:0.24rem;"></a>基本资料
+        </span>
       </div>
       <div class="form">
         <ul>
@@ -24,7 +26,7 @@
                 style="display:flex;line-height: 0.8rem;height: 0.8rem;">
                 <van-radio :name="1">男</van-radio>
                 <van-radio :name="2">女</van-radio>
-              </van-radio-group> -->
+              </van-radio-group>-->
               <div @click="genderShow=true;">
                 <div v-if="gender==''" style="color:#999">请选择</div>
                 <div v-else>{{gender}}</div>
@@ -90,126 +92,84 @@
               <input v-model="userName" placeholder="请输入工作" />
             </div>
           </li>
-          <li :style="{height:tagNameList.lenght==1?'0.8rem;':'auto'}">
+          <li :style="{height:tagNameList.lenght==1?'0.8rem;':'auto'}" class="border0">
             <span>
               <img src="@/static/img/myTag.png" alt />我的标签
             </span>
-              <div @click="tagBol=true;" class="newPageBtn">
-                <div style="color:#999">
-                  <van-icon name="edit" />
-                </div>
-                <!-- <div v-else style="line-height:0.65rem">
-                  <span v-for="(item,i) in tagNameList" :key="i">{{item}}</span>
-                </div> -->
+            <div @click="tagBol=true;" class="newPageBtn">
+              <div style="color:#999">
+                <van-icon name="edit" />
               </div>
-          </li>
-          <li :style="{height:'auto'}">
-              <div @click="tagBol=true;">
-                <div style="line-height:0.65rem">
+              <!-- <div v-else style="line-height:0.65rem">
                   <span v-for="(item,i) in tagNameList" :key="i">{{item}}</span>
-                </div>
-              </div>
+              </div>-->
+            </div>
           </li>
-          <li :style="{height:self_intro.lenght != 0?'auto;':'1.8rem'}">
+          <li style="height:auto" class="border0">
+            <div @click="tagBol=true;">
+              <div style="line-height:0.65rem">
+                <span v-for="(item,i) in tagNameList" :key="i">{{item}}</span>
+              </div>
+            </div>
+          </li>
+          <li :style="{height:self_intro.lenght != 0?'auto;':'1.8rem'}"  class="border0">
             <span>
               <img src="@/static/img/introduce.png" alt />个人介绍
             </span>
             <div @click="selfInfo=true;" class="newPageBtn">
-                <div style="color:#999">
-                  <van-icon name="edit" />
-                </div>
+              <div style="color:#999">
+                <van-icon name="edit" />
               </div>
+            </div>
           </li>
-          <li :style="{height:'auto'}">
-              <div @click="selfInfo=true;">
-                <div style="line-height:0.65rem">
-                  <p v-if="self_intro != ''">{{ self_intro }}</p>
-                </div>
+          <li style="height:auto"  class="border0">
+            <div @click="selfInfo=true;">
+              <div style="line-height:0.4rem;font-size:0.22rem">
+                <p v-if="self_intro != ''"  style="padding:0.05rem 0.1rem 0.1rem;border: 1px solid #eee;border-radius: 0.1rem;">{{ self_intro }}</p>
               </div>
+            </div>
           </li>
-          
-          <li :style="{height:friend_condition.lenght != 0?'auto;':'1.8rem'}">
+          <li :style="{height:friend_condition.lenght != 0?'auto;':'1.8rem'}" class="border0">
             <span>
               <img src="@/static/img/require.png" alt />择偶标准
             </span>
             <div @click="friendStandard=true;" class="newPageBtn">
-                <div style="color:#999">
-                  <van-icon name="edit" />
-                </div>
+              <div style="color:#999">
+                <van-icon name="edit" />
               </div>
+            </div>
           </li>
-          <li :style="{height:'auto'}">
-              <div @click="friendStandard=true;">
-                <div style="line-height:0.65rem">
-                  <p v-if="friend_condition != ''">{{ friend_condition }}</p>
-                </div>
+          <li style="height:auto" class="border0">
+            <div @click="friendStandard=true;">
+              <div style="line-height:0.4rem;font-size:0.22rem">
+                <p v-if="friend_condition != ''"  style="padding:0.05rem 0.1rem 0.1rem;border: 1px solid #eee;border-radius: 0.1rem;">{{ friend_condition }}</p>
               </div>
+            </div>
           </li>
 
-          <li :style="{height:friend_condition.lenght != 0?'auto;':'1.8rem'}">
+          <li :style="{height:friend_condition.lenght != 0?'auto;':'1.8rem'}" class="border0">
             <span>
               <img src="@/static/img/familyBg.png" alt />家庭背景
             </span>
-            <div @click="familyBg=true;" class="newPageBtn" >
-                <div style="color:#999">
-                  <van-icon name="edit" />
-                </div>
+            <div @click="familyBg=true;" class="newPageBtn">
+              <div style="color:#999">
+                <van-icon name="edit" />
               </div>
+            </div>
           </li>
-          <li :style="{height:'auto'}">
-              <div @click="familyBg=true;">
-                <div style="line-height:0.65rem">
-                  <p v-if="family_info != ''">{{ family_info }}</p>
-                </div>
+          <li style="height:auto" class="border0">
+            <div @click="familyBg=true;">
+              <div style="line-height:0.4rem;font-size:0.22rem;">
+                <p v-if="family_info != ''" style="padding:0.05rem 0.1rem 0.1rem;border: 1px solid #eee;border-radius: 0.1rem;">{{ family_info }}</p>
               </div>
+            </div>
           </li>
         </ul>
       </div>
-      <!-- <van-steps direction="vertical" :active="3" active-icon="success" active-color="#38f">
-    <van-step>
-      <div>
-            <span>姓名</span>
-            <div>
-              <input v-model="userName" placeholder="请输入用户名" />
-            </div>
-      </div>
-    </van-step>
-    <van-step>
-      <div>
-            <span>姓名</span>
-            <div>
-              <input v-model="userName" placeholder="请输入用户名" />
-            </div>
-      </div>
-    </van-step>
-    <van-step>
-      <div>
-            <span>姓名</span>
-            <div>
-              <input v-model="userName" placeholder="请输入用户名" />
-            </div>
-      </div>
-    </van-step>
-    <van-step>
-      <div>
-            <span>姓名</span>
-            <div>
-              <input v-model="userName" placeholder="请输入用户名" />
-            </div>
-      </div>
-    </van-step>
-    <van-step>
-      <div>
-            <span>姓名</span>
-            <div>
-              <input v-model="userName" placeholder="请输入用户名" />
-            </div>
-      </div>
-    </van-step>
-      </van-steps>-->
-
       <div class="loadTit">
-        <span><a class="titBorder" style="margin-top:0.24rem;"></a>上传照片</span>
+        <span>
+          <a class="titBorder" style="margin-top:0.24rem;"></a>上传照片
+        </span>
         <a>最多可上传10张图片</a>
       </div>
       <van-uploader
@@ -219,7 +179,9 @@
         :before-delete="beforeDelete1"
       />
       <div class="loadTit">
-        <span><a class="titBorder" style="margin-top:0.24rem;"></a>上传微信二维码</span>
+        <span>
+          <a class="titBorder" style="margin-top:0.24rem;"></a>上传微信二维码
+        </span>
       </div>
       <van-uploader
         v-model="preview2"
@@ -283,84 +245,78 @@
       <span>您觉得哪些标签更符合你？</span>
       <div v-for="(item,i) in tagList" :key="i">
         <p>{{item.name}}</p>
-        <span v-for="(child,j) in item.child_list" :key="j" :class="child.bol?'act':''" @click="child.bol=!child.bol;">{{child.name}}</span>
+        <span
+          v-for="(child,j) in item.child_list"
+          :key="j"
+          :class="child.bol?'act':''"
+          @click="child.bol=!child.bol;"
+        >{{child.name}}</span>
       </div>
-      <p class="btm" @click="tagId">
-        保 存
-      </p>
+      <p class="btm" @click="tagId">保 存</p>
     </div>
     <div class="tags" v-show="selfInfo">
       <span>个人介绍</span>
       <div class="hobbyWarp">
         <textarea
-          rows="3"
+          rows="4"
           v-model="self_intro"
           placeholder="业余喜欢做什么，比如喜欢看什么样的书、喜欢去什么地方旅游等"
           maxlength="500"
         ></textarea>
         <a>{{self_intro.length}}/500</a>
-        
+
         <!-- 图片上传绑定值暂未给 -->
-        <van-uploader
+        <!-- <van-uploader
           v-model="hobbyImg"
           :max-count="10"
           :before-read="beforeUploadSelfIntro"
           :before-delete="beforeDeleteSelfIntro"
-        />
+        /> -->
       </div>
-      <p class="btm" @click="handleSelfIntro">
-        保 存
-      </p>
+      <p class="btm" @click="handleSelfIntro">保 存</p>
     </div>
 
     <div class="tags" v-show="friendStandard">
       <span>择偶标准</span>
       <div class="hobbyWarp">
-        <textarea
-          rows="3"
-          v-model="friend_condition"
-          placeholder="择偶标准"
-          maxlength="500"
-        ></textarea>
+        <textarea rows="4" v-model="friend_condition" placeholder="择偶标准" maxlength="500"></textarea>
         <a>{{friend_condition.length}}/500</a>
-        <van-uploader
+        <!-- <van-uploader
           v-model="hobbyImg"
           :max-count="10"
           :before-read="beforeUploadCondition"
           :before-delete="beforeDeleteCondition"
-        />
+        /> -->
       </div>
-      <p class="btm" @click="handleSaveFriend">
-        保 存
-      </p>
+      <p class="btm" @click="handleSaveFriend">保 存</p>
     </div>
 
     <div class="tags" v-show="familyBg">
       <span>家庭背景</span>
       <div class="hobbyWarp">
         <textarea
-          rows="3"
+          rows="4"
           v-model="family_info"
           placeholder="介绍下父母职业，比如普通家庭、经商家庭、高知家庭等"
           maxlength="500"
         ></textarea>
         <a>{{family_info.length}}/500</a>
-        <van-uploader
+        <div></div>
+        <!-- <van-uploader
           v-model="hobbyImg"
           :max-count="10"
           :before-read="beforeUploadFamily"
           :before-delete="beforeDeleteFamily"
-        />
+        /> -->
       </div>
-      <p class="btm" @click="handleSaveFamilyBg">
-        保 存
-      </p>
+      <p class="btm" @click="handleSaveFamilyBg">保 存</p>
     </div>
   </div>
 </template>
 
 <script>
-import { release, imgUpload ,getTagList} from "@/request/api.js";
+import * as qiniu from 'qiniu-js'
+import { release, imgUpload ,getTagList,getToken} from "@/request/api.js";
 import areas from "@/static/js/area.js";
 import moment from "moment";
 // import axios from "axios";
@@ -416,7 +372,7 @@ export default {
             tagIdList:[],
             tagNameList:[],
             hobbyImg: [],
-            hobbyImgList: [],
+            hobbyImgList: []
         };
     },
     methods: {
@@ -450,19 +406,50 @@ export default {
         beforeRead2(files) {
             if (
                 files.type == "image/jpeg" ||
-        files.type == "image/jpg" ||
-        files.type == "image/png" ||
-        files.type == "image/gif"
+                files.type == "image/jpg" ||
+                files.type == "image/png" ||
+                files.type == "image/gif"
             ) {
                 if (files.size / 1024 / 1024 > 3) {
                     Toast("上传图片大小超过3M");
                     return false;
                 } else {
-                    var formData = new FormData();
-                    formData.append("image", files);
-                    imgUpload(formData).then(res => {
-                        this.imgList2.push(res.data.img_url);
-                    });
+                    // var formData = new FormData();
+                    // formData.append("image", files);
+                    // imgUpload(formData).then(res => {
+                    //     this.imgList2.push(res.data.img_url);
+                    // });
+                    getToken().then(res=>{
+                      var uptoken = res.data.upload_token;
+                      var file = files; //Blob 对象，上传的文件
+                      var key = encodeURI(file.name);  // 上传后文件资源名以设置的 key 为主，如果 key 为 null 或者 undefined，则文件资源名会以 hash 值作为资源名。
+                      let config = {
+                        useCdnDomain: true,   //表示是否使用 cdn 加速域名，为布尔值，true 表示使用，默认为 false。
+                        region: null     // 根据具体提示修改上传地区,当为 null 或 undefined 时，自动分析上传域名区域
+                      };
+                      let putExtra = {
+                        fname: "",  //文件原文件名
+                        params: {}, //用来放置自定义变量
+                        mimeType: null  //用来限制上传文件类型，为 null 时表示不对文件类型限制；限制类型放到数组里： ["image/png", "image/jpeg", "image/gif"]
+                      };
+                      var observable = qiniu.upload(file, key, uptoken, putExtra, config);
+                      observable.subscribe({
+                        next: (result) => {
+                        // 主要用来展示进度
+                          // console.log(result);
+                        },
+                        error: (errResult) => {
+                          Toast("上传失败");
+                          // 失败报错信息
+                          // console.log(errResult);
+                        },
+                        complete: (result) => {
+                        // 接收成功后返回的信息
+                          console.log(result);
+                          this.imgList2.push(result.key);
+                        }
+                      })
+                    })
                     return true;
                 }
             } else {
@@ -503,20 +490,48 @@ export default {
             //   }
             // } else {
             if (
-                files.type == "image/jpeg" ||
-        files.type == "image/jpg" ||
-        files.type == "image/png" ||
-        files.type == "image/gif"
-            ) {
+                files.type == "image/jpeg" ||files.type == "image/jpg" ||files.type == "image/png" ||files.type == "image/gif") {
                 if (files.size / 1024 / 1024 > 3) {
                     Toast("上传图片大小超过3M");
                     return false;
                 } else {
-                    var formData = new FormData();
-                    formData.append("image", files);
-                    imgUpload(formData).then(res => {
-                        this.imgList1.push(res.data.img_url);
-                    });
+                    // var formData = new FormData();
+                    // formData.append("image", files);
+                    // imgUpload(formData).then(res => {
+                    //     this.imgList1.push(res.data.img_url);
+                    // });
+                    //后端获取token
+                    getToken().then(res=>{
+                      var uptoken = res.data.upload_token;
+                      var file = files; //Blob 对象，上传的文件
+                      var key = encodeURI(file.name);  // 上传后文件资源名以设置的 key 为主，如果 key 为 null 或者 undefined，则文件资源名会以 hash 值作为资源名。
+                      let config = {
+                        useCdnDomain: true,   //表示是否使用 cdn 加速域名，为布尔值，true 表示使用，默认为 false。
+                        region: null     // 根据具体提示修改上传地区,当为 null 或 undefined 时，自动分析上传域名区域
+                      };
+                      let putExtra = {
+                        fname: "",  //文件原文件名
+                        params: {}, //用来放置自定义变量
+                        mimeType: null  //用来限制上传文件类型，为 null 时表示不对文件类型限制；限制类型放到数组里： ["image/png", "image/jpeg", "image/gif"]
+                      };
+                      var observable = qiniu.upload(file, key, uptoken, putExtra, config);
+                      observable.subscribe({
+                        next: (result) => {
+                        // 主要用来展示进度
+                          // console.log(result);
+                        },
+                        error: (errResult) => {
+                          Toast("上传失败");
+                          // 失败报错信息
+                          // console.log(errResult);
+                        },
+                        complete: (result) => {
+                        // 接收成功后返回的信息
+                          console.log(result);
+                          this.imgList1.push(result.key);
+                        }
+                      })
+                    })
                     return true;
                 }
             } else {
@@ -531,11 +546,7 @@ export default {
         },
         beforeUploadHobby(files) {
             if (
-                files.type == "image/jpeg" ||
-        files.type == "image/jpg" ||
-        files.type == "image/png" ||
-        files.type == "image/gif"
-            ) {
+                files.type == "image/jpeg" ||files.type == "image/jpg" ||files.type == "image/png" ||files.type == "image/gif") {
                 if (files.size / 1024 / 1024 > 3) {
                     Toast("上传图片大小超过3M");
                     return false;
@@ -565,7 +576,38 @@ export default {
             this.familyBg = false;
         },
         // 家庭背景图片上传
-        beforeUploadFamily() {},
+        beforeUploadFamily(e) {
+          //后端获取token
+          getToken().then(res=>{
+            var uptoken = res.data.upload_token;
+            var file = e //Blob 对象，上传的文件
+            var key = 'cdn.anheqiaobei.com/'+encodeURI(file.name);  // 上传后文件资源名以设置的 key 为主，如果 key 为 null 或者 undefined，则文件资源名会以 hash 值作为资源名。
+            let config = {
+              useCdnDomain: true,   //表示是否使用 cdn 加速域名，为布尔值，true 表示使用，默认为 false。
+              region: null     // 根据具体提示修改上传地区,当为 null 或 undefined 时，自动分析上传域名区域
+            };
+            let putExtra = {
+              fname: "",  //文件原文件名
+              params: {}, //用来放置自定义变量
+              mimeType: null  //用来限制上传文件类型，为 null 时表示不对文件类型限制；限制类型放到数组里： ["image/png", "image/jpeg", "image/gif"]
+            };
+            var observable = qiniu.upload(file, key, uptoken, putExtra, config);
+            observable.subscribe({
+              next: (result) => {
+              // 主要用来展示进度
+                console.log(result);
+              },
+              error: (errResult) => {
+                // 失败报错信息
+                console.log(errResult);
+              },
+              complete: (result) => {
+              // 接收成功后返回的信息
+                console.log(result);
+              }
+            })
+          })
+        },
         beforeDeleteFamily() {},
         // 择偶标准
         handleSaveFriend() {
@@ -573,7 +615,7 @@ export default {
         },
         // 择偶标准图片上传
         beforeUploadCondition() {
-      
+          
         },
         beforeDeleteCondition() {
 
@@ -677,7 +719,41 @@ export default {
                 return `${value}日`;
             }
             return value;
-        }
+        },
+    zh_uploadFile_change(e){
+      //后端获取token
+      getToken().then(res=>{
+        var uptoken = res.data.data
+        var file = evfile.target.files[0] //Blob 对象，上传的文件
+        var key = file.name  // 上传后文件资源名以设置的 key 为主，如果 key 为 null 或者 undefined，则文件资源名会以 hash 值作为资源名。
+ 
+        let config = {
+          useCdnDomain: true,   //表示是否使用 cdn 加速域名，为布尔值，true 表示使用，默认为 false。
+          region: null     // 根据具体提示修改上传地区,当为 null 或 undefined 时，自动分析上传域名区域
+        };
+ 
+        let putExtra = {
+          fname: "",  //文件原文件名
+          params: {}, //用来放置自定义变量
+          mimeType: null  //用来限制上传文件类型，为 null 时表示不对文件类型限制；限制类型放到数组里： ["image/png", "image/jpeg", "image/gif"]
+        };
+        var observable = qiniu.upload(file, key, uptoken, putExtra, config);
+        observable.subscribe({
+          next: (result) => {
+          // 主要用来展示进度
+            console.log(result)
+          },
+          error: (errResult) => {
+          // 失败报错信息
+            console.log(errResult)
+          },
+          complete: (result) => {
+          // 接收成功后返回的信息
+            console.log(result);
+          }
+        })
+      })
+    },
     // 解析base64格式
     // files(e) {
     //   console.log(e.target.files[0]);
@@ -712,6 +788,9 @@ export default {
 };
 </script>
 <style lang="scss" scoped>
+.border0{
+  border-bottom: 0 !important;
+}
 .release {
   margin-bottom: 1.5rem;
   box-sizing: border-box;
@@ -744,7 +823,7 @@ export default {
       border-bottom: 1px solid #eee;
       line-height: 0.8rem;
       box-sizing: border-box;
-      padding: 0 0.2rem 0 0;
+      // padding: 0 0.2rem 0 0;
       display: flex;
       position: relative;
       a {
@@ -758,10 +837,10 @@ export default {
       }
       .newPageBtn {
         position: absolute;
-        right: .1rem;
+        right: 0.1rem;
       }
       div {
-        span{
+        span {
           display: inline-block;
           height: 0;
           line-height: 0;
@@ -792,7 +871,7 @@ export default {
           padding: 0.1rem 0 0.1rem;
         }
       }
-      &>span {
+      & > span {
         display: inline-block;
         width: 1.8rem;
         img {
@@ -862,7 +941,7 @@ export default {
     margin-top: 0.3rem;
   }
 }
-.tags{
+.tags {
   position: fixed;
   top: 0;
   left: 0;
@@ -870,33 +949,34 @@ export default {
   height: 100%;
   z-index: 9999;
   background: rgba($color: #fff, $alpha: 1);
-  &>span{
+  & > span {
     font-size: 0.26rem;
     display: block;
     box-sizing: border-box;
     padding: 0.1rem 0 0 0.2rem;
     margin-bottom: -0.2rem;
   }
-  &>div{
+  & > div {
     font-size: 0.2rem;
-    padding: 0.2rem 0 0 0.2rem;
-    p{
+    box-sizing: border-box;
+    padding: 0.2rem 0.2rem 0;
+    p {
       font-size: 0.26rem;
       border-left: 3px solid #2b4cfd;
       padding-left: 0.1rem;
       margin: 0.2rem 0;
     }
-    span{
+    span {
       display: inline-block;
-      padding:0.08rem 0.25rem;
+      padding: 0.08rem 0.25rem;
       border-radius: 0.1rem;
       border: 1px solid #eee;
       // color: #333;
-      margin:0.1rem;
+      margin: 0.1rem;
       background: #fffff5;
     }
   }
-  .btm{
+  .btm {
     width: 2.5rem;
     height: 0.7rem;
     color: #fff;
@@ -904,13 +984,13 @@ export default {
     line-height: 0.7rem;
     background: #2b4cfd;
     font-size: 0.28rem;
-    position:absolute;
+    position: absolute;
     bottom: 0.5rem;
     border-radius: 0.35rem;
     left: 2rem;
   }
 }
-.tags .act{
+.tags .act {
   background: #2b4cfd;
   color: #fff;
 }
@@ -919,21 +999,20 @@ export default {
   textarea {
     width: 100%;
     height: 80%;
-    line-height: 0.5rem;  
+    line-height: 0.4rem;
     box-sizing: border-box;
     border: 1px dashed #c7cfff;
-    padding: .1rem;
-    margin: .2rem 0;
+    padding: 0.1rem;
+    margin: 0.2rem 0;
   }
   a {
     display: inline-block;
     position: absolute;
-    bottom: 2rem;
+    bottom: 0;
     right: 0.3rem;
     line-height: 0;
     background: #fff;
     color: #aaa;
   }
 }
-
 </style>

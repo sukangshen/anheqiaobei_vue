@@ -46,7 +46,7 @@
     </div>
     <div class="easy">
       <div class="button-group">
-        <van-button round type="info" size="small">分享</van-button>
+        <van-button round type="info" size="small" @click="goShare">分享</van-button>
         <van-button
           round
           type="info"
@@ -54,9 +54,8 @@
           color="linear-gradient(to left, #4bb0ff, #6149f6)"
           @click="showPopup"
         >想认识</van-button>
-        <van-popup v-model="show" position="bottom" :style="{ height: '30%' }">
-          <span>很想认识一下</span>
-          <div ></div>
+        <van-popup v-model="show" position="bottom" style="height:30%;">
+          <!-- <span>很想认识一下</span> -->
           <div v-for="(item,i) in data.wechat_img" :key="i" class="qr-code">
             <img :src="item" alt class="qr-code-img" />
           </div>
@@ -67,7 +66,9 @@
 </template>
 
 <script>
+import WxShare from "@/tools/wechatShare.js";
 import { detail } from "@/request/api.js";
+import { Toast } from "vant";
 export default {
     name: "detailed",
     data() {
@@ -81,6 +82,18 @@ export default {
         };
     },
     methods: {
+      goShare(){
+        WxShare({
+                desc:"安和桥北",
+                title:"安和桥北",
+                imgUrl:this.images[0],
+                link:'http://love.anheqiaobei.com/detailed?id'+this.$route.query.id
+            }).then(()=>{
+                Toast('点击右上角去分享');
+            }).catch((err)=>{
+                Toast('分享失败');
+            })
+      },
         onChange(index) {
             this.index = index;
         },
@@ -93,7 +106,6 @@ export default {
     },
     mounted() {
         detail(this.$route.query.id).then(res => {
-            console.log(res.data);
             this.data = res.data;
             this.images = res.data.self_img;
         });

@@ -39,7 +39,7 @@ export function my(data) {
 }
 export function detail(data) {
     return request({
-        url: '/api/wechat/profileDetail?profile_id='+data,
+        url: '/api/wechat/profileDetail?profile_id=' + data,
         method: 'get',
     })
 }
@@ -47,29 +47,29 @@ export function createOrder(data) {
     return request({
         url: '/api/wechat/createOrder',
         method: 'post',
-        data:data
+        data: data
     })
 }
 export function getSlide() {
     return request({
         url: '/api/wechat/getSlides',
         method: 'get',
-        data:{}
+        data: {}
     })
 }
 export function getTagList() {
     return request({
         url: '/api/wechat/getTagList',
         method: 'get',
-        data:{}
+        data: {}
     })
 }
 
 export function getTicket(data) {
     return request({
-        url: '/api/wechat/getTicket?url='+data.url,
+        url: '/api/wechat/getTicket?url=' + data.url,
         method: 'get',
-        data:{}
+        data: {}
     })
 }
 // 用户身份提交认证
@@ -77,7 +77,7 @@ export function userCard(data) {
     return request({
         url: '/api/wechat/identityAuth',
         method: 'post',
-        data:data
+        data: data
     })
 }
 // 获取认证信息
@@ -85,7 +85,7 @@ export function approve(data) {
     return request({
         url: '/api/wechat/myAuthInfo',
         method: 'get',
-        data:{}
+        data: {}
     })
 }
 // 工作认证
@@ -93,9 +93,25 @@ export function workCard(data) {
     return request({
         url: '/api/wechat/workAuth',
         method: 'post',
-        data:data
+        data: data
     })
 }
+
+// 我的发布
+export function myRelease(data) {
+    return request({
+        url: '/api/wechat/myProfileList',
+        method: 'get',
+        data: data
+    })
+}
+export function getToken() {
+    return request({
+        url: '/api/wechat/getQiniuToken',
+        method: 'get',
+    })
+}
+
 
 
 
