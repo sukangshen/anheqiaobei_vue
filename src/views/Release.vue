@@ -21,12 +21,6 @@
               <img src="@/static/img/sex.png" alt />性别
             </span>
             <div>
-              <!-- <van-radio-group
-                v-model="gender"
-                style="display:flex;line-height: 0.8rem;height: 0.8rem;">
-                <van-radio :name="1">男</van-radio>
-                <van-radio :name="2">女</van-radio>
-              </van-radio-group>-->
               <div @click="genderShow=true;">
                 <div v-if="gender==''" style="color:#999">请选择</div>
                 <div v-else>{{gender}}</div>
@@ -411,8 +405,8 @@ export default {
                 files.type == "image/png" ||
                 files.type == "image/gif"
             ) {
-                if (files.size / 1024 / 1024 > 3) {
-                    Toast("上传图片大小超过3M");
+                if (files.size / 1024 / 1024 > 10) {
+                    Toast("上传图片大小超过10M");
                     return false;
                 } else {
                     // var formData = new FormData();
@@ -492,8 +486,8 @@ export default {
             // } else {
             if (
                 files.type == "image/jpeg" ||files.type == "image/jpg" ||files.type == "image/png" ||files.type == "image/gif") {
-                if (files.size / 1024 / 1024 > 3) {
-                    Toast("上传图片大小超过3M");
+                if (files.size / 1024 / 1024 > 10) {
+                    Toast("上传图片大小超过10M");
                     return false;
                 } else {
                     // var formData = new FormData();
@@ -861,7 +855,7 @@ export default {
         flex: 1;
         input {
           width: 100%;
-          height: 100%;
+          line-height: 3;
           background: #fff;
         }
         input::placeholder {
