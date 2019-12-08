@@ -1,7 +1,7 @@
 <template>
   <div class="release">
     <div class="head" @click="goPreview">
-      <van-swipe :autoplay="3000" indicator-color="#333">
+      <van-swipe :autoplay="3000" indicator-color="#2b4cfd">
         <van-swipe-item v-for="(item,i) in data.self_img" :key="i">
           <img :src="item" alt class="imgClass" />
         </van-swipe-item>
@@ -22,21 +22,9 @@
         {{data.nickname}}
       </p>
       <div>
-        <p>{{data.birth}} | {{data.height}}cm | {{data.weight}}kg</p>
+        <p>{{data.birth}} | {{data.height}}cm | {{data.weight}}kg | {{data.job}}</p>
         <p>{{data.address_birth_name && data.address_birth_name.split('-')[0]}}{{data.address_birth_name && data.address_birth_name.split('-')[1]}} | 现居{{data.address_live_name && data.address_live_name.split('-')[0]}}{{data.address_live_name && data.address_live_name.split('-')[1]}}</p>
       </div>
-    </div>
-    <div class="easy">
-      <span><a class="titBorder"></a>个人介绍：</span>
-      <div>{{data.self_intro}}</div>
-    </div>
-    <div class="easy">
-      <span><a class="titBorder"></a>择偶标准：</span>
-      <div>{{data.friend_condition}}</div>
-    </div>
-    <div class="easy">
-      <span><a class="titBorder"></a>家庭背景：</span>
-      <div>{{data.family_info}}</div>
     </div>
     <div class="easy">
       <span><a class="titBorder"></a>个人标签：</span>
@@ -45,23 +33,39 @@
       </div>
     </div>
     <div class="easy">
+      <span><a class="titBorder"></a>个人介绍：</span>
+      <div>{{data.self_intro}}</div>
+    </div>
+    <div class="easy">
+      <span><a class="titBorder"></a>家庭背景：</span>
+      <div>{{data.family_info}}</div>
+    </div>
+    
+    <div class="easy">
+      <span><a class="titBorder"></a>择偶标准：</span>
+      <div>{{data.friend_condition}}</div>
+    </div>
+    
+    
+    <div class="btm_btn">
+      <span style="background:linear-gradient(to left, #A07AeC, #6A47FB)" @click="goShare">分 享</span>
+      <span style="background:linear-gradient(to left,#FF88A6, #FF6994 )" @click="showPopup">想认识</span>
       <div class="button-group">
-        <van-button round type="info" size="small" @click="goShare">分享</van-button>
+        <!-- <van-button round type="info" style="width:2.5rem;" color="linear-gradient(to left, #A07AeC, #6A47FB)"  @click="goShare">分 享</van-button>
         <van-button
-          round
+          round style="width:2.5rem"
           type="info"
-          size="small"
           color="linear-gradient(to left, #4bb0ff, #6149f6)"
           @click="showPopup"
-        >想认识</van-button>
-        <van-popup v-model="show" position="bottom" style="height:30%;">
-          <!-- <span>很想认识一下</span> -->
-          <div v-for="(item,i) in data.wechat_img" :key="i" class="qr-code">
-            <img :src="item" alt class="qr-code-img" />
-          </div>
-        </van-popup>
+        >想认识</van-button> -->
       </div>
     </div>
+    <van-popup v-model="show" position="bottom" style="height:30%;">
+      <!-- <span>很想认识一下</span> -->
+      <div v-for="(item,i) in data.wechat_img" :key="i" class="qr-code">
+        <img :src="item" alt class="qr-code-img" />
+      </div>
+    </van-popup>
   </div>
 </template>
 
@@ -129,10 +133,11 @@ export default {
   height: 100%;
 }
 .easy {
-  font-size: 0.24rem;
+  font-size: 0.22rem;
   background: #fff;
   box-sizing: border-box;
   margin: 0.2rem 0;
+  
 }
 .easy > span {
   display: block;
@@ -176,13 +181,13 @@ export default {
   }
 }
 .brief {
-  height: 1.6rem;
+  height: 1.5rem;
   border-bottom: 1px solid #eee;
   box-sizing: border-box;
   padding: 0 0.25rem;
   margin-top: 0.2rem;
   & > p {
-    font-size: 0.3rem;
+    font-size: 0.28rem;
     height: 0.6rem;
     line-height: 0.6rem;
     img {
@@ -195,7 +200,7 @@ export default {
     padding-bottom: 0.05rem;
   }
   div {
-    font-size: 0.24rem;
+    font-size: 0.22rem;
     p {
       color: #999;
       padding-bottom: 0.05rem;
@@ -207,5 +212,22 @@ export default {
 }
 .van-tag--default {
   background-color: #c3c1c1;
+}
+.btm_btn{
+  width: 100%;
+  box-sizing: border-box;
+  padding:  0.1rem 0.26rem 0.3rem;
+  font-size: 0.26rem;
+  display: flex;
+  justify-content: space-around;
+  span{
+    display: inline-block;
+    width: 2.3rem;
+    height: 0.7rem;
+    text-align: center;
+    line-height: 0.7rem;
+    border-radius: 0.35rem;
+    color: #fff;
+  }
 }
 </style>
