@@ -19,10 +19,10 @@ input,button,textarea{
 }
 html,body{
   width: 100%;
-  height: 100%;
+//   height: 100%;
   background: #fff;
   -webkit-overflow-scrolling: touch;
-	overflow: auto;
+	// overflow: auto;
 }
 .van-toast__text{
   color: #fff

@@ -27,20 +27,20 @@
 <script>
 import { my} from "@/request/api.js";
 export default {
-  name: "information",
-  data() {
-    return {
-      nickName:'',
-      headimgurl:''
-    };
-  },
-  methods: {},
-  mounted() {
-    my({}).then(res=>{
-      this.nickName=res.data.original.nickname;
-      this.headimgurl=res.data.original.headimgurl
-    })
-  }
+    name: "information",
+    data() {
+        return {
+            nickName:'',
+            headimgurl:''
+        };
+    },
+    methods: {},
+    mounted() {
+        my({}).then(res=>{
+            this.nickName=res.data.original.nickname;
+            this.headimgurl=res.data.original.headimgurl
+        })
+    }
 };
 </script>
 <style lang="scss" scoped>

@@ -82,13 +82,21 @@
               <div v-else>{{address_live_name}}</div>
             </div>
           </li>
+          <li>
+            <span>
+              <img src="@/static/img/job.png" alt />工作
+            </span>
+            <div>
+              <input v-model="userName" placeholder="请输入工作" />
+            </div>
+          </li>
           <li :style="{height:tagNameList.lenght==1?'0.8rem;':'auto'}">
             <span>
-              <img src="@/static/img/height.png" alt />我的标签
+              <img src="@/static/img/myTag.png" alt />我的标签
             </span>
-              <div @click="tagBol=true;">
+              <div @click="tagBol=true;" class="newPageBtn">
                 <div style="color:#999">
-                  <van-icon name="records" />
+                  <van-icon name="edit" />
                 </div>
                 <!-- <div v-else style="line-height:0.65rem">
                   <span v-for="(item,i) in tagNameList" :key="i">{{item}}</span>
@@ -102,42 +110,58 @@
                 </div>
               </div>
           </li>
-          <li style="height:1.8rem;padding-bottom:0.2rem">
+          <li :style="{height:self_intro.lenght != 0?'auto;':'1.8rem'}">
             <span>
               <img src="@/static/img/introduce.png" alt />个人介绍
             </span>
-            <div>
-              <textarea rows="3" v-model="self_intro" placeholder="介绍自己有趣的灵魂吧" maxlength="200"></textarea>
-            </div>
-            <a>{{self_intro.length}}/200</a>
+            <div @click="selfInfo=true;" class="newPageBtn">
+                <div style="color:#999">
+                  <van-icon name="edit" />
+                </div>
+              </div>
           </li>
-          <li style="height:1.8rem">
+          <li :style="{height:'auto'}">
+              <div @click="selfInfo=true;">
+                <div style="line-height:0.65rem">
+                  <p v-if="self_intro != ''">{{ self_intro }}</p>
+                </div>
+              </div>
+          </li>
+          
+          <li :style="{height:friend_condition.lenght != 0?'auto;':'1.8rem'}">
             <span>
               <img src="@/static/img/require.png" alt />择偶标准
             </span>
-            <div>
-              <textarea
-                rows="3"
-                v-model="friend_condition"
-                placeholder="对另一半有什么要求呢"
-                maxlength="200"
-              ></textarea>
-            </div>
-            <a>{{friend_condition.length}}/200</a>
+            <div @click="friendStandard=true;" class="newPageBtn">
+                <div style="color:#999">
+                  <van-icon name="edit" />
+                </div>
+              </div>
           </li>
-          <li style="height:1.8rem">
+          <li :style="{height:'auto'}">
+              <div @click="friendStandard=true;">
+                <div style="line-height:0.65rem">
+                  <p v-if="friend_condition != ''">{{ friend_condition }}</p>
+                </div>
+              </div>
+          </li>
+
+          <li :style="{height:friend_condition.lenght != 0?'auto;':'1.8rem'}">
             <span>
-              <img src="@/static/img/require.png" alt />家庭背景
+              <img src="@/static/img/familyBg.png" alt />家庭背景
             </span>
-            <div>
-              <textarea
-                rows="3"
-                v-model="family_info"
-                placeholder="简单介绍下家庭情况吧"
-                maxlength="200"
-              ></textarea>
-            </div>
-            <a>{{family_info.length}}/200</a>
+            <div @click="familyBg=true;" class="newPageBtn" >
+                <div style="color:#999">
+                  <van-icon name="edit" />
+                </div>
+              </div>
+          </li>
+          <li :style="{height:'auto'}">
+              <div @click="familyBg=true;">
+                <div style="line-height:0.65rem">
+                  <p v-if="family_info != ''">{{ family_info }}</p>
+                </div>
+              </div>
           </li>
         </ul>
       </div>
@@ -265,6 +289,73 @@
         保 存
       </p>
     </div>
+    <div class="tags" v-show="selfInfo">
+      <span>个人介绍</span>
+      <div class="hobbyWarp">
+        <textarea
+          rows="3"
+          v-model="self_intro"
+          placeholder="业余喜欢做什么，比如喜欢看什么样的书、喜欢去什么地方旅游等"
+          maxlength="500"
+        ></textarea>
+        <a>{{self_intro.length}}/500</a>
+        
+        <!-- 图片上传绑定值暂未给 -->
+        <van-uploader
+          v-model="hobbyImg"
+          :max-count="10"
+          :before-read="beforeUploadSelfIntro"
+          :before-delete="beforeDeleteSelfIntro"
+        />
+      </div>
+      <p class="btm" @click="handleSelfIntro">
+        保 存
+      </p>
+    </div>
+
+    <div class="tags" v-show="friendStandard">
+      <span>择偶标准</span>
+      <div class="hobbyWarp">
+        <textarea
+          rows="3"
+          v-model="friend_condition"
+          placeholder="择偶标准"
+          maxlength="500"
+        ></textarea>
+        <a>{{friend_condition.length}}/500</a>
+        <van-uploader
+          v-model="hobbyImg"
+          :max-count="10"
+          :before-read="beforeUploadCondition"
+          :before-delete="beforeDeleteCondition"
+        />
+      </div>
+      <p class="btm" @click="handleSaveFriend">
+        保 存
+      </p>
+    </div>
+
+    <div class="tags" v-show="familyBg">
+      <span>家庭背景</span>
+      <div class="hobbyWarp">
+        <textarea
+          rows="3"
+          v-model="family_info"
+          placeholder="介绍下父母职业，比如普通家庭、经商家庭、高知家庭等"
+          maxlength="500"
+        ></textarea>
+        <a>{{family_info.length}}/500</a>
+        <van-uploader
+          v-model="hobbyImg"
+          :max-count="10"
+          :before-read="beforeUploadFamily"
+          :before-delete="beforeDeleteFamily"
+        />
+      </div>
+      <p class="btm" @click="handleSaveFamilyBg">
+        保 存
+      </p>
+    </div>
   </div>
 </template>
 
@@ -272,263 +363,321 @@
 import { release, imgUpload ,getTagList} from "@/request/api.js";
 import areas from "@/static/js/area.js";
 import moment from "moment";
-import axios from "axios";
+// import axios from "axios";
 import { Toast, Dialog } from "vant";
 export default {
-  name: "release",
-  data() {
-    return {
-      tagBol:false,
-      genderShow:false,
-      genderList: ['男','女'],
-      weightShow: false,
-      weightList: [],
-      heightShow: false,
-      heightList: [],
-      dizhi: [
-        { code: "110000", name: "北京市" },
-        { code: "110100", name: "北京市" },
-        { code: "110101", name: "东城区" }
-      ],
-      addressShow: false,
-      dateShow: false,
-      maxDate: new Date(),
-      minDate: new Date(1900, 1, 1),
-      value: new Date(),
-      preview1: [],
-      preview2: [],
-      imgList1: [],
-      imgList2: [],
-      userName: "",
-      dialogImageUrl: "",
-      dialogVisible: false,
-      sexBol: false,
-      sex: "",
-      sexMsg: "请选择性别",
-      dateVal: "",
-      self_intro: "",
-      friend_condition: "",
-      address_live: "",
-      address_birth: "",
-      address_live_name: "",
-      address_birth_name: "",
-      addressType: 0,
-      weight: "",
-      height: "",
-      gender: "",
-      family_info:'',
-      areaList: areas,
-      tagList:[],
-      tagIdList:[],
-      tagNameList:[]
-    };
-  },
-  methods: {
-    tagId(){
-      this.tagIdList=[];
-      this.tagNameList=[];
-      for(var i in this.tagList){
-        var item = this.tagList[i];
-        for(var j in item.child_list){
-          if(item.child_list[j].bol){
-            this.tagIdList.push(item.child_list[j].id);
-            this.tagNameList.push(item.child_list[j].name);
-          }
-        }
-      }
-      this.tagBol=false;
-      console.log(this.tagIdList);
+    name: "release",
+    data() {
+        return {
+            tagBol:false,
+            selfInfo: false,
+            familyBg: false,
+            friendStandard: false,
+            genderShow:false,
+            genderList: ['男','女'],
+            weightShow: false,
+            weightList: [],
+            heightShow: false,
+            heightList: [],
+            dizhi: [
+                { code: "110000", name: "北京市" },
+                { code: "110100", name: "北京市" },
+                { code: "110101", name: "东城区" }
+            ],
+            addressShow: false,
+            dateShow: false,
+            maxDate: new Date(),
+            minDate: new Date(1900, 1, 1),
+            value: new Date(),
+            preview1: [],
+            preview2: [],
+            imgList1: [],
+            imgList2: [],
+            userName: "",
+            dialogImageUrl: "",
+            dialogVisible: false,
+            sexBol: false,
+            sex: "",
+            sexMsg: "请选择性别",
+            dateVal: "",
+            self_intro: "",
+            friend_condition: "",
+            address_live: "",
+            address_birth: "",
+            address_live_name: "",
+            address_birth_name: "",
+            addressType: 0,
+            weight: "",
+            height: "",
+            gender: "",
+            family_info:'',
+            areaList: areas,
+            tagList:[],
+            tagIdList:[],
+            tagNameList:[],
+            hobbyImg: [],
+            hobbyImgList: [],
+        };
     },
-    genderConfirm(e){
-      this.gender=e;
-      this.genderShow = false;
-    },
-    weightConfirm(e){
-      this.weight = e;
-      this.weightShow = false;
-    },
-    heightConfirm(e) {
-      this.height = e;
-      this.heightShow = false;
-    },
-    beforeRead2(files) {
-      if (
-        files.type == "image/jpeg" ||
-        files.type == "image/jpg" ||
-        files.type == "image/png" ||
-        files.type == "image/gif"
-      ) {
-        if (files.size / 1024 / 1024 > 3) {
-          Toast("上传图片大小超过3M");
-          return false;
-        } else {
-          var formData = new FormData();
-          formData.append("image", files);
-          imgUpload(formData).then(res => {
-            this.imgList2.push(res.data.img_url);
-          });
-          return true;
-        }
-      } else {
-        Toast("上传图片格式有误");
-        return false;
-      }
-    },
-    beforeDelete2(files, index) {
-      this.imgList2.splice(index.index, 1);
-      return true;
-    },
-    beforeDelete1(files, index) {
-      this.imgList1.splice(index.index, 1);
-      return true;
-    },
-    beforeRead1(files) {
-      // 判断是否是选中了多个，暂时不支持
-      // if (files[0]) {
-      //   for (var i in files) {
-      //     // 判断图片格式
-      //     if (
-      //       files[i].type == "image/jpeg" ||
-      //       files[i].type == "image/jpg" ||
-      //       files[i].type == "image/png" ||
-      //       files[i].type == "image/gif"
-      //     ) {
-      //       return true;
-      //     } else {
-      //       return false;
-      //     }
-      //     // 判断图片大小
-      //     if (files[i].size / 1024 / 1024 > 3) {
-      //       Toast("上传图片中存在大小超过3M的文件");
-      //       return false;
-      //     } else {
-      //       return true;
-      //     }
-      //   }
-      // } else {
-      if (
-        files.type == "image/jpeg" ||
-        files.type == "image/jpg" ||
-        files.type == "image/png" ||
-        files.type == "image/gif"
-      ) {
-        if (files.size / 1024 / 1024 > 3) {
-          Toast("上传图片大小超过3M");
-          return false;
-        } else {
-          var formData = new FormData();
-          formData.append("image", files);
-          imgUpload(formData).then(res => {
-            this.imgList1.push(res.data.img_url);
-          });
-          return true;
-        }
-      } else {
-        Toast("上传图片格式有误");
-        return false;
-      }
-      // }
-    },
-    submit() {
-      if (this.userName == "") {
-        Toast("请填写您的姓名");
-        return;
-      }
-      if (this.gender == "") {
-        Toast("请选择您的性别");
-        return;
-      }
-      if (this.height == "") {
-        Toast("请填写您的身高");
-        return;
-      }
-      if (this.weight == "") {
-        Toast("请填写您的体重");
-        return;
-      }
-      if (this.dateVal == "") {
-        Toast("请选择您的出生日期");
-        return;
-      }
-      if (this.address_live_name == "") {
-        Toast("请选择您的家乡地址");
-        return;
-      }
-      if (this.address_birth_name == "") {
-        Toast("请选择您的当前现居地");
-        return;
-      }
-      if (this.self_intro == "") {
-        Toast("介绍下自己，让对方初步了解您");
-        return;
-      }
-      if (this.friend_condition == "") {
-        Toast("对另一半的要求是什么呢");
-        return;
-      }
-      if (this.family_info == "") {
-        Toast("简单介绍下家庭情况吧");
-        return;
-      }
-      Dialog.confirm({
-        title: "提示",
-        message: "确定要发布吗？"
-      })
-        .then(() => {
-          release({
-            family_info:this.family_info,
-            tag_id:this.tagIdList,
-            self_img: this.imgList1,
-            wechat_img: this.imgList2,
-            gender: this.gender=='男'?1:2,
-            age: this.dateVal,
-            height: this.height,
-            weight: this.weight,
-            self_intro: this.self_intro,
-            friend_condition: this.friend_condition,
-            address_live: this.address_live,
-            address_live_name: this.address_live_name,
-            address_birth: this.address_birth,
-            address_birth_name: this.address_birth_name
-          }).then(res => {
-            if (res.status) {
-              Toast("发布成功");
+    methods: {
+        tagId(){
+            this.tagIdList=[];
+            this.tagNameList=[];
+            for(var i in this.tagList){
+                var item = this.tagList[i];
+                for(var j in item.child_list){
+                    if(item.child_list[j].bol){
+                        this.tagIdList.push(item.child_list[j].id);
+                        this.tagNameList.push(item.child_list[j].name);
+                    }
+                }
             }
-          });
-          // on confirm
-        })
-        .catch(() => {
-          // on cancel
-        });
-    },
-    addressConfirm(e) {
-      console.log(e);
-      var location = e[0].name + "-" + e[1].name + "-" + e[2].name;
-      var codes = e[0].code + "-" + e[1].code + "-" + e[2].code;
-      if (this.addressType == 0) {
-        this.address_birth_name = location;
-        this.address_birth = codes;
-      } else {
-        this.address_live_name = location;
-        this.address_live = codes;
-      }
-      this.addressShow = false;
-    },
-    confirm() {
-      var filterVal = moment(this.value).format("YYYY-MM-DD");
-      this.dateVal = filterVal;
-      this.dateShow = false;
-    },
-    formatter(type, value) {
-      if (type === "year") {
-        return `${value}年`;
-      } else if (type === "month") {
-        return `${value}月`;
-      } else if (type === "day") {
-        return `${value}日`;
-      }
-      return value;
-    }
+            this.tagBol=false;
+            console.log(this.tagIdList);
+        },
+        genderConfirm(e){
+            this.gender=e;
+            this.genderShow = false;
+        },
+        weightConfirm(e){
+            this.weight = e;
+            this.weightShow = false;
+        },
+        heightConfirm(e) {
+            this.height = e;
+            this.heightShow = false;
+        },
+        beforeRead2(files) {
+            if (
+                files.type == "image/jpeg" ||
+        files.type == "image/jpg" ||
+        files.type == "image/png" ||
+        files.type == "image/gif"
+            ) {
+                if (files.size / 1024 / 1024 > 3) {
+                    Toast("上传图片大小超过3M");
+                    return false;
+                } else {
+                    var formData = new FormData();
+                    formData.append("image", files);
+                    imgUpload(formData).then(res => {
+                        this.imgList2.push(res.data.img_url);
+                    });
+                    return true;
+                }
+            } else {
+                Toast("上传图片格式有误");
+                return false;
+            }
+        },
+        beforeDelete2(files, index) {
+            this.imgList2.splice(index.index, 1);
+            return true;
+        },
+        beforeDelete1(files, index) {
+            this.imgList1.splice(index.index, 1);
+            return true;
+        },
+        beforeRead1(files) {
+            // 判断是否是选中了多个，暂时不支持
+            // if (files[0]) {
+            //   for (var i in files) {
+            //     // 判断图片格式
+            //     if (
+            //       files[i].type == "image/jpeg" ||
+            //       files[i].type == "image/jpg" ||
+            //       files[i].type == "image/png" ||
+            //       files[i].type == "image/gif"
+            //     ) {
+            //       return true;
+            //     } else {
+            //       return false;
+            //     }
+            //     // 判断图片大小
+            //     if (files[i].size / 1024 / 1024 > 3) {
+            //       Toast("上传图片中存在大小超过3M的文件");
+            //       return false;
+            //     } else {
+            //       return true;
+            //     }
+            //   }
+            // } else {
+            if (
+                files.type == "image/jpeg" ||
+        files.type == "image/jpg" ||
+        files.type == "image/png" ||
+        files.type == "image/gif"
+            ) {
+                if (files.size / 1024 / 1024 > 3) {
+                    Toast("上传图片大小超过3M");
+                    return false;
+                } else {
+                    var formData = new FormData();
+                    formData.append("image", files);
+                    imgUpload(formData).then(res => {
+                        this.imgList1.push(res.data.img_url);
+                    });
+                    return true;
+                }
+            } else {
+                Toast("上传图片格式有误");
+                return false;
+            }
+            // }
+        },
+        beforeDeleteHobby(files, index) {
+            this.hobbyImgList.splice(index.index, 1);
+            return true;
+        },
+        beforeUploadHobby(files) {
+            if (
+                files.type == "image/jpeg" ||
+        files.type == "image/jpg" ||
+        files.type == "image/png" ||
+        files.type == "image/gif"
+            ) {
+                if (files.size / 1024 / 1024 > 3) {
+                    Toast("上传图片大小超过3M");
+                    return false;
+                } else {
+                    var formData = new FormData();
+                    formData.append("image", files);
+                    imgUpload(formData).then(res => {
+                        this.hobbyImgList.push(res.data.img_url);
+                    });
+                    return true;
+                }
+            } else {
+                Toast("上传图片格式有误");
+                return false;
+            }
+            // }
+        },
+        // 个人介绍
+        handleSelfIntro() {
+            this.selfInfo=false;
+        },
+        // 个人介绍图片上传
+        beforeUploadSelfIntro() {},
+        beforeDeleteSelfIntro() {},
+        // 家庭背景
+        handleSaveFamilyBg() {
+            this.familyBg = false;
+        },
+        // 家庭背景图片上传
+        beforeUploadFamily() {},
+        beforeDeleteFamily() {},
+        // 择偶标准
+        handleSaveFriend() {
+            this.friendStandard = false;
+        },
+        // 择偶标准图片上传
+        beforeUploadCondition() {
+      
+        },
+        beforeDeleteCondition() {
+
+        },
+        submit() {
+            if (this.userName == "") {
+                Toast("请填写您的姓名");
+                return;
+            }
+            if (this.gender == "") {
+                Toast("请选择您的性别");
+                return;
+            }
+            if (this.height == "") {
+                Toast("请填写您的身高");
+                return;
+            }
+            if (this.weight == "") {
+                Toast("请填写您的体重");
+                return;
+            }
+            if (this.dateVal == "") {
+                Toast("请选择您的出生日期");
+                return;
+            }
+            if (this.address_live_name == "") {
+                Toast("请选择您的家乡地址");
+                return;
+            }
+            if (this.address_birth_name == "") {
+                Toast("请选择您的当前现居地");
+                return;
+            }
+            if (this.self_intro == "") {
+                Toast("介绍下自己，让对方初步了解您");
+                return;
+            }
+            if (this.friend_condition == "") {
+                Toast("对另一半的要求是什么呢");
+                return;
+            }
+            if (this.family_info == "") {
+                Toast("简单介绍下家庭情况吧");
+                return;
+            }
+            Dialog.confirm({
+                title: "提示",
+                message: "确定要发布吗？"
+            })
+                .then(() => {
+                    release({
+                        family_info:this.family_info,
+                        tag_id:this.tagIdList,
+                        self_img: this.imgList1,
+                        wechat_img: this.imgList2,
+                        gender: this.gender=='男'?1:2,
+                        age: this.dateVal,
+                        height: this.height,
+                        weight: this.weight,
+                        self_intro: this.self_intro,
+                        friend_condition: this.friend_condition,
+                        address_live: this.address_live,
+                        address_live_name: this.address_live_name,
+                        address_birth: this.address_birth,
+                        address_birth_name: this.address_birth_name
+                    }).then(res => {
+                        if (res.status) {
+                            Toast("发布成功");
+                        }
+                    });
+                    // on confirm
+                })
+                .catch(() => {
+                    // on cancel
+                });
+        },
+        addressConfirm(e) {
+            console.log(e);
+            var location = e[0].name + "-" + e[1].name + "-" + e[2].name;
+            var codes = e[0].code + "-" + e[1].code + "-" + e[2].code;
+            if (this.addressType == 0) {
+                this.address_birth_name = location;
+                this.address_birth = codes;
+            } else {
+                this.address_live_name = location;
+                this.address_live = codes;
+            }
+            this.addressShow = false;
+        },
+        confirm() {
+            var filterVal = moment(this.value).format("YYYY-MM-DD");
+            this.dateVal = filterVal;
+            this.dateShow = false;
+        },
+        formatter(type, value) {
+            if (type === "year") {
+                return `${value}年`;
+            } else if (type === "month") {
+                return `${value}月`;
+            } else if (type === "day") {
+                return `${value}日`;
+            }
+            return value;
+        }
     // 解析base64格式
     // files(e) {
     //   console.log(e.target.files[0]);
@@ -539,27 +688,27 @@ export default {
     //     console.log(this.result);
     //   };
     // }
-  },
-  mounted() {
-    this.heightList = [];
-    // console.log(areas);
-    for (var i = 140; i < 200; i++) {
-      this.heightList.push(i);
-    }
-    this.weightList = [];
-    for (var i = 40; i < 100; i++) {
-      this.weightList.push(i);
-    }
-    getTagList().then(res=>{
-      for(var i in res.data){
-        var item = res.data[i];
-        for(var j in item.child_list){
-          item.child_list[j].bol=false;
+    },
+    mounted() {
+        this.heightList = [];
+        // console.log(areas);
+        for (var i = 140; i < 200; i++) {
+            this.heightList.push(i);
         }
-      }
-      this.tagList=res.data;
-    })
-  }
+        this.weightList = [];
+        for (let i = 40; i < 100; i++) {
+            this.weightList.push(i);
+        }
+        getTagList().then(res=>{
+            for(var i in res.data){
+                var item = res.data[i];
+                for(var j in item.child_list){
+                    item.child_list[j].bol=false;
+                }
+            }
+            this.tagList=res.data;
+        })
+    }
 };
 </script>
 <style lang="scss" scoped>
@@ -606,6 +755,10 @@ export default {
         line-height: 0;
         background: #fff;
         color: #aaa;
+      }
+      .newPageBtn {
+        position: absolute;
+        right: .1rem;
       }
       div {
         span{
@@ -761,4 +914,26 @@ export default {
   background: #2b4cfd;
   color: #fff;
 }
+.hobbyWarp {
+  position: relative;
+  textarea {
+    width: 100%;
+    height: 80%;
+    line-height: 0.5rem;  
+    box-sizing: border-box;
+    border: 1px dashed #c7cfff;
+    padding: .1rem;
+    margin: .2rem 0;
+  }
+  a {
+    display: inline-block;
+    position: absolute;
+    bottom: 2rem;
+    right: 0.3rem;
+    line-height: 0;
+    background: #fff;
+    color: #aaa;
+  }
+}
+
 </style>

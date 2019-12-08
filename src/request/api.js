@@ -1,68 +1,68 @@
 import request from '@/request/http.js'
 import wx from "weixin-js-sdk";
 export function fetchList(data) {
-  return request({
-    url: '/api/wechat/auth',
-    method: 'get',
-    params: data
-  })
+    return request({
+        url: '/api/wechat/auth',
+        method: 'get',
+        params: data
+    })
 }
 export function getList(data) {
-  return request({
-    url: '/api/wechat/profileSearch',
-    method: 'get',
-    params: data
-  })
+    return request({
+        url: '/api/wechat/profileSearch',
+        method: 'get',
+        params: data
+    })
 }
 
 export function release(data) {
-  return request({
-    url: '/api/wechat/profileCreate',
-    method: 'post',
-    data
-  })
+    return request({
+        url: '/api/wechat/profileCreate',
+        method: 'post',
+        data
+    })
 }
 
 export function imgUpload(data) {
-  return request({
-    url: '/api/wechat/img',
-    method: 'post',
-    data
-  })
+    return request({
+        url: '/api/wechat/img',
+        method: 'post',
+        data
+    })
 }
 export function my(data) {
-  return request({
-    url: '/api/wechat/me',
-    method: 'post',
-    data
-  })
+    return request({
+        url: '/api/wechat/me',
+        method: 'post',
+        data
+    })
 }
 export function detail(data) {
-  return request({
-    url: '/api/wechat/profileDetail?profile_id='+data,
-    method: 'get',
-  })
+    return request({
+        url: '/api/wechat/profileDetail?profile_id='+data,
+        method: 'get',
+    })
 }
 export function createOrder(data) {
-  return request({
-    url: '/api/wechat/createOrder',
-    method: 'post',
-    data:data
-  })
+    return request({
+        url: '/api/wechat/createOrder',
+        method: 'post',
+        data:data
+    })
 }
 export function getSlide() {
-  return request({
-    url: '/api/wechat/getSlides',
-    method: 'get',
-    data:{}
-  })
+    return request({
+        url: '/api/wechat/getSlides',
+        method: 'get',
+        data:{}
+    })
 }
 export function getTagList() {
-  return request({
-    url: '/api/wechat/getTagList',
-    method: 'get',
-    data:{}
-  })
+    return request({
+        url: '/api/wechat/getTagList',
+        method: 'get',
+        data:{}
+    })
 }
 
 export function getTicket(data) {
@@ -74,27 +74,27 @@ export function getTicket(data) {
 }
 // 用户身份提交认证
 export function userCard(data) {
-  return request({
-      url: '/api/wechat/identityAuth',
-      method: 'post',
-      data:data
-  })
+    return request({
+        url: '/api/wechat/identityAuth',
+        method: 'post',
+        data:data
+    })
 }
 // 获取认证信息
 export function approve(data) {
-  return request({
-      url: '/api/wechat/myAuthInfo',
-      method: 'get',
-      data:{}
-  })
+    return request({
+        url: '/api/wechat/myAuthInfo',
+        method: 'get',
+        data:{}
+    })
 }
 // 工作认证
 export function workCard(data) {
-  return request({
-      url: '/api/wechat/workAuth',
-      method: 'post',
-      data:data
-  })
+    return request({
+        url: '/api/wechat/workAuth',
+        method: 'post',
+        data:data
+    })
 }
 
 
