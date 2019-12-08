@@ -2,7 +2,8 @@
   <div class="about">
   <div class="topBg">
     <div class="swiper">
-      <van-swipe :autoplay="2000" loop indicator-color="#1989fa !important">
+        <!--:autoplay="2000" loop-->
+        <van-swipe indicator-color="#1989fa !important">
         <van-swipe-item v-for="(item,i) in slides" :key="i"><img :src="item.img_url" alt="" @click="goTargetUrl(item.target)"></van-swipe-item>
       </van-swipe>
     </div>
@@ -183,7 +184,7 @@ export default {
 }
 .top {
   font-size: 0.28rem;
-  margin: 0.2rem 0 0.15rem;
+  margin: 0.2rem .17rem 0.15rem;
 }
 .top > div {
   width: 2rem;
@@ -205,13 +206,15 @@ export default {
   margin-right: 0.35rem;
   padding-bottom: 0.08rem;
   color: #999;
+    font-size:.22rem;
 }
 .top .activeClass {
   color: #333;
+    font-size:.26rem;
 }
 .cont {
   // margin-bottom: 1rem;
-  width: 6.2rem;
+  width: 5.8rem;
   margin: 0 auto 1rem;
   p {
     font-size: 0.2rem;
@@ -223,9 +226,13 @@ export default {
     justify-content: space-between;
     flex-wrap: wrap;
     li {
-      width: 3.08rem;
+      width: 2.8rem;
       height: 4.38rem;
       overflow: hidden;
+        border-radius: .1rem;
+        background: #fff;
+        box-shadow: 0px 0px 5px #ccc;
+        margin-bottom: 10px;
        img {
           width: 100%;
           height: 3.8rem;
