@@ -855,7 +855,8 @@ export default {
         flex: 1;
         input {
           width: 100%;
-          line-height: 3;
+          height: 100%;
+          font-size: 0.26rem;
           background: #fff;
         }
         input::placeholder {
