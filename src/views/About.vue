@@ -38,11 +38,6 @@
     <div class="cont" @touchend="load">
       <ul>
         <li v-for="(item,i) in list" :key="i" @click="goDetail(item.profile_id)">
-          <!-- <van-image :src="item['self_img']?item['self_img'][0]:''" style="object-fit: cover ;">
-            <template v-slot:loading>
-              <van-loading type="spinner" size="20" />
-            </template>
-          </van-image> -->
           <img
             :src="item['self_img']?item['self_img'][0]:''"
             alt
