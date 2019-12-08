@@ -1,11 +1,33 @@
 <template>
   <div class="about">
+  <div class="topBg">
     <div class="swiper">
       <van-swipe :autoplay="2000" loop indicator-color="#1989fa !important">
         <van-swipe-item v-for="(item,i) in slides" :key="i"><img :src="item.img_url" alt="" @click="goTargetUrl(item.target)"></van-swipe-item>
       </van-swipe>
     </div>
-
+ </div>
+ <div class="topList">
+   <ul>
+     <li>
+       <img src="@/static/img/home_top1.png" alt="">
+       <span>认证体系</span>
+     </li>
+     <li>
+       <img src="@/static/img/home_top2.png" alt="">
+       <span>发布流程</span>
+     </li>
+     <li>
+       <img src="@/static/img/home_top3.png" alt="">
+       <span>关于我们</span>
+     </li>
+     <li>
+       <img src="@/static/img/home_top4.png" alt="">
+       <span>常见问题</span>
+     </li>
+   </ul>
+ </div>
+ <div style="width:100%;height:0.1rem;background:#eee"></div>
     <div class="top">
       <div>
         <span :class="active==1?'activeClass':''" @click="tab(1)">最新</span>
@@ -119,27 +141,16 @@ export default {
 <style lang='scss' scoped>
 .about {
   width: 100%;
+  .topBg{
+    width: 100%;
+    height: 2.9rem;
+    background: url(../static/img/home_bg.png) no-repeat 0 0/100% 3rem;
   .swiper{
     height: 2.3rem;
     position: relative;
-    // span{
-    //   display: block;
-    //   position: absolute;
-    //   width: 0.1rem;
-    //   height: 2.3rem;
-    //   top: 0;
-    //   background: #2b4cfd;
-    //   &:nth-of-type(1){
-    //     left: 0;
-    //     border-radius: 0 5px 5px 0;
-    //   }
-    //   &:nth-of-type(2){
-    //     right: 0;
-    //     border-radius: 5px 0px 0px 5px;
-    //   }
-    // }
+    padding-top: 0.6rem;
     .van-swipe{
-      width: 6.2rem;
+      width: 5.8rem;
       margin: 0.1rem auto 0;
       border-radius: 0.1rem;
       overflow: hidden;
@@ -152,6 +163,28 @@ export default {
       }
     }
   }
+    }
+    .topList{
+      width: 100%;
+      margin-top: 0.3rem;
+      margin-bottom: 0.2rem;
+      ul{
+        display: flex;
+        justify-content: space-between;
+        li{
+          width: 25%;
+          text-align: center;
+          font-size: 0.2rem;
+          img{
+            width: 0.7rem;
+            margin-bottom: 0.08rem;
+          }
+          span{
+            display: block;
+          }
+        }
+      }
+    }
 }
 .top {
   font-size: 0.28rem;
