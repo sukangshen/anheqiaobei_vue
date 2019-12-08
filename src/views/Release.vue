@@ -858,6 +858,7 @@ export default {
           height: 100%;
           font-size: 0.26rem;
           background: #fff;
+          line-height: 0.26rem;
         }
         input::placeholder {
           color: #999;
