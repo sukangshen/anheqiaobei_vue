@@ -87,7 +87,7 @@ export default {
                 desc:"安和桥北",
                 title:"安和桥北",
                 imgUrl:this.images[0],
-                link:'http://love.anheqiaobei.com/detailed?id'+this.$route.query.id
+                link:'http://love.anheqiaobei.com/detailed?id='+this.$route.query.id
             }).then(()=>{
                 Toast('点击右上角去分享');
             }).catch((err)=>{

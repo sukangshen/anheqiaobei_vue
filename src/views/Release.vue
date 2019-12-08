@@ -89,7 +89,7 @@
               <img src="@/static/img/job.png" alt />工作
             </span>
             <div>
-              <input v-model="userName" placeholder="请输入工作" />
+              <input v-model="job" placeholder="请输入工作" />
             </div>
           </li>
           <li :style="{height:tagNameList.lenght==1?'0.8rem;':'auto'}" class="border0">
@@ -366,6 +366,7 @@ export default {
             weight: "",
             height: "",
             gender: "",
+            job:'',
             family_info:'',
             areaList: areas,
             tagList:[],
@@ -645,8 +646,12 @@ export default {
                 Toast("请选择您的家乡地址");
                 return;
             }
-            if (this.address_birth_name == "") {
-                Toast("请选择您的当前现居地");
+            if (this.job == "") {
+                Toast("请选择您的工作");
+                return;
+            }
+            if (this.family_info == "") {
+                Toast("简单介绍下家庭情况吧");
                 return;
             }
             if (this.self_intro == "") {
@@ -661,12 +666,14 @@ export default {
                 Toast("简单介绍下家庭情况吧");
                 return;
             }
+            
             Dialog.confirm({
                 title: "提示",
                 message: "确定要发布吗？"
             })
                 .then(() => {
                     release({
+                        job:this.job,
                         family_info:this.family_info,
                         tag_id:this.tagIdList,
                         self_img: this.imgList1,
