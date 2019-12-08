@@ -6,25 +6,30 @@
                   <img src="@/static/img/user.png" alt="" style="height:0.6rem;">
                   <span>实名认证</span>
               </div>
-              <div class="right" @click="$router.push('/user')">
+              <div class="right">
               <!-- 0待认证 1待审核 2已通过 3审核失败 -->
-                  <span v-if="identity==0">待认证</span>
+                  <span v-if="identity==0" @click="$router.push('/user')">待认证</span>
                   <span v-else-if="identity==1">待审核</span>
-                  <span v-else-if="identity==2">已通过</span>
-                  <span v-else>审核失败</span>
+                  <span v-else-if="identity==2" @click="$router.push('/user')">已通过</span>
+                  <span v-else @click="$router.push('/user')">审核失败</span>
+                  <a v-if="identity==3">审核失败，重新认证</a>
               </div>
+              
           </li>
           <li>
               <div class="left">
                   <img src="@/static/img/work.png" alt="">
                   <span>工作认证</span>
               </div>
-              <div class="right" @click="$router.push('/work')">
-                  <span v-if="work==0">待认证</span>
+              <div class="right">
+                  <span v-if="work==0" @click="$router.push('/work')">待认证</span>
                   <span v-else-if="work==1">待审核</span>
-                  <span v-else-if="work==2">已通过</span>
-                  <span v-else>审核失败</span>
+                  <span v-else-if="work==2" @click="$router.push('/work')">已通过</span>
+                  <span v-else @click="$router.push('/work')">审核失败</span>
+                  <a v-if="work==2">工作有更新，重新认证</a>
+                  <a v-if="work==3">审核失败，重新认证</a>
               </div>
+              
           </li>
           <!-- <li>
               <div class="left">
@@ -49,7 +54,6 @@ export default {
         }
     },
     created(){
-        document.body.style.background='#fafafa';
         approve().then(res=>{
             if(res.status){
                 this.identity=res.data.identity.status;
@@ -62,6 +66,12 @@ export default {
 
 <style lang='scss' scoped>
     .approve{
+        width: 100%;
+        height: 100%;
+        position: fixed;
+        top: 0;
+        left: 0;
+        background: #f5f5f5;
         ul{
             width: 6rem;
             margin: 0.25rem auto;
@@ -77,6 +87,7 @@ export default {
                 box-sizing: border-box;
                 padding:0 0.5rem;
                 justify-content: space-between;
+                position: relative;
                 .left{
                     width: 0.8rem;
                     text-align: center;
@@ -91,14 +102,30 @@ export default {
                     }
                 }
                 .right{
-                    width: 1.7rem;
-                    height: 0.54rem;
+                    width: 2rem;
                     font-size: 0.24rem;
                     text-align: center;
-                    line-height: 0.54rem;
                     color: #fff;
-                    background: #2b4cfd;
-                    border-radius: 0.3rem;
+                    span{
+                        width: 1.7rem;
+                        display: block;
+                        line-height: 0.54rem;
+                        height: 100%;
+                        background: #2b4cfd;
+                        border-radius: 0.3rem;
+                        margin: 0 auto;
+                    }
+                    a{
+                        color: #2b4cfd;
+                        font-size: 0.18rem;
+                        white-space: nowrap;
+                        padding-top: 0.05rem;
+                    }
+                }
+                &>span{
+                    position:absolute;
+                    right: 0;
+                    bottom: 0
                 }
             }
         }

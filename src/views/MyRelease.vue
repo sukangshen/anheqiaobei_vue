@@ -85,6 +85,12 @@ export default {
 </script>
 <style lang="scss" scoped>
     .myRelease{
+        width: 100%;
+        height: 100%;
+        position: fixed;
+        top: 0;
+        left: 0;
+        background: #f5f5f5;
         ul{
             width: 100%;
             box-sizing: border-box;
@@ -102,6 +108,7 @@ export default {
                 img{
                     width: 1.8rem;
                     height: 1.8rem;
+                    object-fit: cover;
                 }
                 div{
                     box-sizing: border-box;
