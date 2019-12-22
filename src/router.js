@@ -28,7 +28,7 @@ export default new Router({
                     name: 'about',
                     component: () =>
                         import ('@/views/About.vue'),
-                    mate: { keepAlive: true }
+                    meta: { keepAlive: true }
                 },
                 // 发布
                 {
@@ -58,7 +58,7 @@ export default new Router({
             name: 'myRelease',
             component: () =>
                 import ('@/views/MyRelease.vue'),
-            mate: { keepAlive: true }
+            meta: { keepAlive: true }
         },
         // 用户认证
         {
