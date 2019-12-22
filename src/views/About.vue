@@ -9,19 +9,19 @@
  </div>
  <div class="topList">
    <ul>
-     <li>
+     <li @click="$router.push('/introduce/system')">
        <img src="@/static/img/home_top1.png" alt="">
        <span>认证体系</span>
      </li>
-     <li>
+     <li @click="$router.push('/introduce/process')">
        <img src="@/static/img/home_top2.png" alt="">
        <span>发布流程</span>
      </li>
-     <li>
+     <li @click="$router.push('/introduce/relevant')">
        <img src="@/static/img/home_top3.png" alt="">
        <span>关于我们</span>
      </li>
-     <li>
+     <li @click="$router.push('/introduce/question')">
        <img src="@/static/img/home_top4.png" alt="">
        <span>常见问题</span>
      </li>
