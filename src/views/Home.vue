@@ -1,6 +1,9 @@
 <template>
   <div class="home">
-    <router-view />
+    <keep-alive>
+        <router-view v-if="$route.meta.keepAlive"></router-view>
+    </keep-alive>
+    <router-view v-if="!$route.meta.keepAlive"></router-view>
     <van-tabbar fixed v-model="active" style="background:#fafafa" v-show="btmBol">
       <van-tabbar-item
       v-for="(item,index) in tabbars"
@@ -96,7 +99,7 @@ export default {
             // var en = 'http://love.anheqiaobei.com';
             var url = 'http://api.love.anheqiaobei.com/api/wechat/auth?target_url='+en;
             // alert('请求'+url);
-            // window.location.href=url;
+            window.location.href=url;
         // alert('继续11');
         }
         // alert('继续22');

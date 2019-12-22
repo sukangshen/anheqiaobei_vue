@@ -228,10 +228,10 @@ export default {
       width: 2.8rem;
       height: 4.38rem;
       overflow: hidden;
-        border-radius: .1rem;
-        background: #fff;
-        box-shadow: 0px 0px 5px #ccc;
-        margin-bottom: 10px;
+      border-radius: .1rem;
+      background: #fff;
+      box-shadow: 0px 0px 5px #ccc;
+      margin-bottom: 10px;
        img {
           width: 100%;
           height: 3.8rem;
