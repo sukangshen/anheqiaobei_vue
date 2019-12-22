@@ -40,13 +40,13 @@
       <span><a class="titBorder"></a>家庭背景：</span>
       <div>{{data.family_info}}</div>
     </div>
-    
+
     <div class="easy">
       <span><a class="titBorder"></a>择偶标准：</span>
       <div>{{data.friend_condition}}</div>
     </div>
-    
-    
+
+
     <div class="btm_btn">
       <span style="background:linear-gradient(to left, #A07AeC, #6A47FB)" @click="goShare">分 享</span>
       <span style="background:linear-gradient(to left,#FF88A6, #FF6994 )" @click="showPopup">想认识</span>
@@ -91,7 +91,7 @@ export default {
                 desc:"安和桥北",
                 title:"安和桥北",
                 imgUrl:this.images[0],
-                link:'http://love.anheqiaobei.com/detailed?id='+this.$route.query.id
+                link:'http://love.anheqiaobei.com/#/detailed?id='+this.$route.query.id
             }).then(()=>{
                 Toast('点击右上角去分享');
             }).catch((err)=>{
@@ -137,7 +137,7 @@ export default {
   background: #fff;
   box-sizing: border-box;
   margin: 0.2rem 0;
-  
+
 }
 .easy > span {
   display: block;

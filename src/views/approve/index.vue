@@ -10,11 +10,12 @@
               <!-- 0待认证 1待审核 2已通过 3审核失败 -->
                   <span v-if="identity==0" @click="$router.push('/user')">待认证</span>
                   <span v-else-if="identity==1">待审核</span>
-                  <span v-else-if="identity==2" @click="$router.push('/user')">已通过</span>
+                  <!--<span v-else-if="identity==2" @click="$router.push('/user')">已通过</span>-->
+                  <span v-else-if="identity==2">已通过</span>
                   <span v-else @click="$router.push('/user')">审核失败</span>
                   <a v-if="identity==3">审核失败，重新认证</a>
               </div>
-              
+
           </li>
           <li>
               <div class="left">
@@ -24,12 +25,12 @@
               <div class="right">
                   <span v-if="work==0" @click="$router.push('/work')">待认证</span>
                   <span v-else-if="work==1">待审核</span>
-                  <span v-else-if="work==2" @click="$router.push('/work')">已通过</span>
+                  <span v-else-if="work==2">已通过</span>
                   <span v-else @click="$router.push('/work')">审核失败</span>
                   <a v-if="work==2">工作有更新，重新认证</a>
                   <a v-if="work==3">审核失败，重新认证</a>
               </div>
-              
+
           </li>
           <!-- <li>
               <div class="left">
