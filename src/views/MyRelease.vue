@@ -11,6 +11,7 @@
                 <span>{{item.age}}岁 | {{item.height}}cm <ab v-if="item.job">| {{item.job}}</ab></span>
                 <a>发布时间：2019-11-29</a>
             </div>
+            <!-- <van-tag plain type="primary">{{item.profile_status_name}}</van-tag> -->
             <span>{{item.profile_status_name}}</span>
         </li>
     </ul>
@@ -134,7 +135,7 @@ export default {
                     height: 0.32rem;
                     border: 1px solid #2b4cfd;
                     color: #2b4cfd;
-                    line-height: 0.32rem;
+                    line-height: 0.325rem;
                     text-align: center;
                     font-size: 0.2rem;
                     border-radius: 0.16rem;

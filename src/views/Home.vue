@@ -1,9 +1,6 @@
 <template>
   <div class="home">
-    <keep-alive>
-        <router-view v-if="$route.meta.keepAlive"></router-view>
-    </keep-alive>
-    <router-view v-if="!$route.meta.keepAlive"></router-view>
+    <router-view></router-view>
     <van-tabbar fixed v-model="active" style="background:#fafafa" v-show="btmBol">
       <van-tabbar-item
       v-for="(item,index) in tabbars"
@@ -57,6 +54,7 @@ export default {
             }else if(to.path=='/information'){
                 this.active=2;
             }
+            sessionStorage.active=this.active;
         }
     },
     methods: {
@@ -77,17 +75,17 @@ export default {
         }else{
             this.active=0;
         }
-        window.addEventListener("popstate", function(e) {
-            if(this.$route.path=='/about'){
-                this.active=0;
-            }else if(this.$route.path=='/release'){
-                this.active=1;
-            }else{
-                this.active=2;
-            }
-        }, false);
+        // window.addEventListener("popstate", function(e) {
+        //     if(this.$route.path=='/about'){
+        //         this.active=0;
+        //     }else if(this.$route.path=='/release'){
+        //         this.active=1;
+        //     }else{
+        //         this.active=2;
+        //     }
+        // }, false);
         if(sessionStorage.token){
-            // 如果存在什么也不做，直接用token就行
+        // 如果存在什么也不做，直接用token就行
         // alert('缓存'+sessionStorage.token);
         }else if(location.href.includes('token')){
         // alert('返回TOKEN'+this.$route.query.token);
@@ -100,7 +98,7 @@ export default {
             var url = 'http://api.love.anheqiaobei.com/api/wechat/auth?target_url='+en;
             // alert('请求'+url);
             window.location.href=url;
-        // alert('继续11');
+            // alert('继续11');
         }
         // alert('继续22');
         var that = this;
@@ -110,10 +108,10 @@ export default {
             function() {
                 if (win - window.innerHeight>140) {
                     that.btmBol = false;
-                    win = window.innerHeight;
+                    // win = window.innerHeight;
                 } else {
                     that.btmBol = true;
-                    win = window.innerHeight;
+                    // win = window.innerHeight;
                 }
                 scrollTo(0,0);
             },

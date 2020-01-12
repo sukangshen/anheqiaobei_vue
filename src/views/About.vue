@@ -49,7 +49,7 @@
           </div>
         </li>
       </ul>
-      <p>{{msg}}</p>
+      <p><van-divider>{{msg}}</van-divider></p>
     </div>
   </div>
 </template>
@@ -214,7 +214,7 @@ export default {
 .cont {
   // margin-bottom: 1rem;
   width: 5.8rem;
-  margin: 0 auto 1rem;
+  margin: 0 auto 1.15rem;
   p {
     font-size: 0.2rem;
     text-align: center;
@@ -225,7 +225,7 @@ export default {
     justify-content: space-between;
     flex-wrap: wrap;
     li {
-      width: 2.8rem;
+      width: 2.82rem;
       height: 4.38rem;
       overflow: hidden;
       border-radius: .1rem;

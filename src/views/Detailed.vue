@@ -25,6 +25,9 @@
         <p>{{data.birth}} | {{data.height}}cm | {{data.weight}}kg | {{data.job}}</p>
         <p>{{data.address_birth_name && data.address_birth_name.split('-')[0]}}{{data.address_birth_name && data.address_birth_name.split('-')[1]}} | 现居{{data.address_live_name && data.address_live_name.split('-')[0]}}{{data.address_live_name && data.address_live_name.split('-')[1]}}</p>
       </div>
+      <span class="is_approve">
+        <img src="@/static/img/is_approve.png" alt="">
+      </span>
     </div>
     <div class="easy">
       <span><a class="titBorder"></a>个人标签：</span>
@@ -60,8 +63,9 @@
         >想认识</van-button> -->
       </div>
     </div>
-    <van-popup v-model="show" position="bottom" style="height:30%;">
+    <van-popup v-model="show" position="bottom" style="height:30%;" class="wantTo">
       <!-- <span>很想认识一下</span> -->
+      <!-- wantToKnow -->
       <div v-for="(item,i) in data.wechat_img" :key="i" class="qr-code">
         <img :src="item" alt class="qr-code-img" />
       </div>
@@ -117,6 +121,9 @@ export default {
 };
 </script>
 <style lang='scss' scoped>
+.wantTo{
+  background: url(../static/img/wantToKnow.png) 0 0/100% 100%;
+}
 .head {
   width: 100%;
   height: 6rem;
@@ -186,6 +193,7 @@ export default {
   box-sizing: border-box;
   padding: 0 0.25rem;
   margin-top: 0.2rem;
+  position: relative;
   & > p {
     font-size: 0.28rem;
     height: 0.6rem;
@@ -204,6 +212,17 @@ export default {
     p {
       color: #999;
       padding-bottom: 0.05rem;
+    }
+  }
+  .is_approve{
+    display: block;
+    position: absolute;
+    top:0.2rem;
+    right: 0.3rem;
+    width: 0.76rem;
+    img{
+      width: 0.76rem;
+      vertical-align: top;
     }
   }
 }
