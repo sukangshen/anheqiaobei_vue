@@ -102,7 +102,8 @@
           <li style="height:auto" class="border0">
             <div @click="tagBol=true;">
               <div style="line-height:0.65rem">
-                <span v-for="(item,i) in tagNameList" :key="i">{{item}}</span>
+                <!-- <span v-for="(item,i) in tagNameList" :key="i">{{item}}</span> -->
+                <van-tag style="margin-right:8px;" size="large" v-for="(item,i) in tagNameList" :key="i" plain type="primary">{{item}}</van-tag>
               </div>
             </div>
           </li>
@@ -841,16 +842,18 @@ export default {
         right: 0.1rem;
       }
       div {
+        // 标签样式，暂用vant的tag
         span {
-          display: inline-block;
-          height: 0;
-          line-height: 0;
-          font-size: 0.2rem;
-          padding: 0.2rem 0.2rem;
-          border-radius: 0.1rem;
-          border: 1px solid #2b4cfd;
-          margin-right: 0.05rem;
+          // display: inline-block;
+          // height: 0;
+          // line-height: 0;
+          // font-size: 0.2rem;
+          // padding: 0.2rem 0.2rem;
+          // border-radius: 0.1rem;
+          // border: 1px solid #2b4cfd;
+          // margin-right: 0.05rem;
           color: #2b4cfd;
+          border-color: #2b4cfd;
         }
         flex: 1;
         input {
