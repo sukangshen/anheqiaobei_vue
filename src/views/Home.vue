@@ -51,8 +51,10 @@ export default {
                 this.active=0;
             }else if(to.path=='/release'){
                 this.active=1;
+                scrollTo(0,0);
             }else if(to.path=='/information'){
                 this.active=2;
+                scrollTo(0,0);
             }
             sessionStorage.active=this.active;
         }
@@ -62,7 +64,7 @@ export default {
             this.active=i;
             sessionStorage.active=i;
             this.$router.push(path);
-            scrollTo(0,0);
+            // scrollTo(0,0);
         }
     },
     mounted() {
@@ -108,10 +110,10 @@ export default {
             function() {
                 if (win - window.innerHeight>180) {
                     that.btmBol = false;
-                    win = window.innerHeight;
+                    // win = window.innerHeight;
                 } else {
                     that.btmBol = true;
-                    win = window.innerHeight;
+                    // win = window.innerHeight;
                 }
                 scrollTo(0,0);
             },
