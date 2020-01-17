@@ -106,12 +106,12 @@ export default {
         window.addEventListener(
             "resize",
             function() {
-                if (win - window.innerHeight>140) {
+                if (win - window.innerHeight>180) {
                     that.btmBol = false;
-                    // win = window.innerHeight;
+                    win = window.innerHeight;
                 } else {
                     that.btmBol = true;
-                    // win = window.innerHeight;
+                    win = window.innerHeight;
                 }
                 scrollTo(0,0);
             },
