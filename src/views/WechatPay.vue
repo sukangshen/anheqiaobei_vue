@@ -39,8 +39,8 @@ export default {
         // 支付
         sub() {
             createOrder({
-                openid: ocxrjwBGMmIv_RmNx9DWiQW_RZ20,
-                openid: sessionStorage.openId,
+                openid: 'ocxrjwBGMmIv_RmNx9DWiQW_RZ20',
+                //openid: sessionStorage.openId,
                 total_fee: "1",
                 goods_name: "爱情"
             }).then(res => {
