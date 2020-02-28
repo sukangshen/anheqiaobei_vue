@@ -52,6 +52,12 @@ export default new Router({
             component: () =>
                 import ('@/views/demo.vue')
         },
+        {
+            path: '/WechatPay',
+            name: 'wechatPay',
+            component: () =>
+                import ('@/views/WechatPay.vue')
+        },
         // 我的
         {
             path: '/myRelease',
